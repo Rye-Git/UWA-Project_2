@@ -20,7 +20,6 @@
 - [Team](#Team)
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Observable Trends](#trends)
 - [Acknowledgments](#acknowledgement)
 
 ## 🧐 Team <a name = "Team"></a>
