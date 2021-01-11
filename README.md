@@ -52,3 +52,7 @@ The top 10 countries and top 10 cities in terms of population <br>
 2.	What is the percentage of the top 10 countries compared to the rest of the world?
 3.	Are the top 10 cities located in the top 10 countries?
 4.	Change in population from 2019 to 2020?
+
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+- UWA Data Science
+- Data source: https://worldpopulationreview.com/
