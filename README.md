@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center">  A report that breaks down the country's happiness score into meaningful insights.
+<p align="center">  A visuzalization of the world's population per country and city 
     <br> 
 </p>
 
@@ -30,6 +30,30 @@
 
 ## 🧐 Team <a name = "Team"></a>
 •	Rye Capati
-•	Sandra Teh
+•	Steve Milton
 •	Cicily George
-•	Bimal Prabha
+•	Parastoo Razavi
+•	Ezra Tassone
+
+## 🧐 About <a name = "about"></a>
+**Description:**
+Visualizion of the World Population per country and city.
+Data clean-up:
+1.	Merging data from 2019 to 2020
+2.	Check for duplication
+3.	Check for invalid value
+4.	Make sure the data frame is consistent for all the data set.
+5.	Make sure no rows accidentally deleted
+
+
+**Summary**
+The top 10 countries and top 10 cities in terms of population <br>
+
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+**Questions to Answer:** <br>
+1.	What are the top 10 countries with the largest population?
+2.	What is the percentage of the top 10 countries compared to the rest of the world?
+3.	Are the top 10 cities located in the top 10 countries?
+4.	Change in population from 2019 to 2020?
