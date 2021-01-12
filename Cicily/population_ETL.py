@@ -60,7 +60,7 @@ df_countries.rename(columns={'name':'Country',
 #####################################################
 # Cleaning csv Population data from https://datacatalog.worldbank.org
 # reading csv's into dataframes
-df_population = pd.read_csv('static/data/population.csv');
+df_population = pd.read_csv('static/data/population.csv')
 
 # Creating a list of required row indexes
 row_list = []
