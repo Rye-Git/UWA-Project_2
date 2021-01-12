@@ -31,13 +31,16 @@
 
 ## 🧐 About <a name = "about"></a>
 **Description:**
-Visualizion of the World Population per country and city.
+Visualizion of the World Population per country and city. <br>
 Data clean-up:
 1.	Merging data from 2019 to 2020
-2.	Check for duplication
-3.	Check for invalid value
-4.	Make sure the data frame is consistent for all the data set.
-5.	Make sure no rows accidentally deleted
+2.	Checked for duplication
+3.	Checked for null value
+4.  Removed unecessary columns
+5.  Renamed and re-arranged the columns
+6.  Updated the incorrect values
+7.	Made sure the data frame is consistent for all the data set.
+8.	Made sure no rows accidentally deleted
 
 
 **Summary**
