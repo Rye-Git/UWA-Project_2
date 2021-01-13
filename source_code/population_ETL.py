@@ -28,13 +28,15 @@ df_LatestPop = pd.read_html(countries_url, header=0)[0]
 # eliminating unnessasary data
 df_LatestPop = df_LatestPop.iloc[:,[1,2,5,6,7,8]]
 # rename the columns
-df_LatestPop.rename(columns={'2019 Density':'2019 Density_PerSqKm', 
+df_LatestPop.rename(columns={'2019 Density':'Density_PerSqKm', 
                              'Growth Rate':'Growth_Percentage', 
                              'World %':'World_Percentage'
                             },inplace=True)
-df_LatestPop['2019 Density_PerSqKm'] = df_LatestPop['2019 Density_PerSqKm'].str.rsplit('/', 0).str.get(0)
-df_LatestPop['Growth_Percentage'] = df_LatestPop['Growth_Percentage'].str.rsplit('%', 0).str.get(0)
-df_LatestPop['World_Percentage'] = df_LatestPop['World_Percentage'].str.rsplit('%', 0).str.get(0)
+                            
+# Converting string values to numbers
+df_LatestPop['Density_PerSqKm'] = pd.to_numeric(df_LatestPop['Density_PerSqKm'].str.rsplit('/', 0).str.get(0).str.replace(r',', ''))
+df_LatestPop['Growth_Percentage'] = pd.to_numeric(df_LatestPop['Growth_Percentage'].str.rsplit('%', 0).str.get(0))
+df_LatestPop['World_Percentage'] = pd.to_numeric(df_LatestPop['World_Percentage'].str.rsplit('%', 0).str.get(0))
 #####################################################
 
 
@@ -55,9 +57,30 @@ df_countries.rename(columns={'name':'Country',
                              'pop1990':'1990' 
                             },inplace=True)
 
+# Removing decimal point from data
+# Loop through the columns
+for col in df_countries:
+    # performing operations on columns other than Country column
+    if col != "Country":
+        df_countries[col] = df_countries[col].astype(str)  # Converting to string
+
+        df_countries[col] = [x.split(".") for x in df_countries[col]]    # Split into 2 strings at the decimal point
+
+        # concatenating both strings choosing only 3 digits from the second string(decimal part)
+        df_countries[col] = [ x[0] + x[1][0:3] if len(x[1]) >= 3 \
+                         else x[0] + x[1][0:3] + '0' if len(x[1]) == 2 \
+                         else x[0] + x[1][0:3] + '00' \
+                            for x in df_countries[col]]
+
+        df_countries[col] = df_countries[col].astype(int)     # Convering back to number 
+        
+
+
+
 
 # Merging with Another dataset
 #####################################################
+# Another Dataset
 # Cleaning csv Population data from https://datacatalog.worldbank.org
 # reading csv's into dataframes
 df_population = pd.read_csv('static/data/population.csv')
@@ -79,6 +102,15 @@ def clean_dataFrames(df):
 
 # Calling clean_dataFrames function passing the dataframe as parameter
 df_population = clean_dataFrames(df_population)
+
+df_population.drop(df_population.index[df_population['Country'] == 'Eritrea'], inplace = True)
+
+# Loop through the columns
+for col in df_population:
+    # performing operations on columns other than Country column
+    if col != "Country":
+        df_population[col] = df_population[col].astype(float)  # Converting string to integer
+        df_population[col] = df_population[col].astype(int)  # Converting string to integer
 
 # Checking for countries that has records in df_countries, but not in df_population
 mismatch_df = df_countries[~df_countries.Country.isin(df_population.Country)]
@@ -105,6 +137,9 @@ df_population["Country"].loc[df_population.Country == "St. Vincent and the Grena
 df_population["Country"].loc[df_population.Country == "Virgin Islands (U.S.)"] = "United States Virgin Islands"
 df_population["Country"].loc[df_population.Country == "St. Kitts and Nevis"] = "Saint Kitts and Nevis"
 df_population["Country"].loc[df_population.Country == "St. Martin (French part)"] = "Saint Martin"
+
+mismatch_df = df_countries[~df_countries.Country.isin(df_population.Country)]
+
 
 
 # merging two dataframes for additional years
@@ -142,11 +177,10 @@ latestPop = db["latestPopulation"]
 def insertToDB(df, collection):
     df.reset_index(inplace=True) # Reset Index
     data_dict = df.to_dict("records") # Convert to dictionary
-    # json_data = json.dumps(data_dict)
-    collection.insert_one({"index":"populationData","data":data_dict})
-    # collection.update({}, data_dict, upsert=True)
+    collection.insert_one({"data":data_dict}) # Insert dict to collection
 
-# insert into DB
+
+# Calling function to insert each dataframes into mongoDB collections
 insertToDB(df_countries, countriesPop)
 insertToDB(df_cityPop, citiesPop)
 insertToDB(df_LatestPop, latestPop)

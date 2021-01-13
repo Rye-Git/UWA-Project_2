@@ -1,6 +1,7 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, jsonify 
 from flask_pymongo import PyMongo
-from bson.json_util import dumps
+from bson.json_util import dumps, loads
+import json
 
 import population_ETL
 
@@ -18,20 +19,28 @@ def dataset():
     return render_template('api.html')
 
 
-@app.route('/api/population/live')
+@app.route('/api/population/latest')
 def latest():
-    latest = mongo.db.latestPopulation.find()
-    return dumps(latest)
+    latest = mongo.db.latestPopulation.find() # PYMONGO CURSOR 
+    dump_latest = dumps(latest) # CONVERT PYMONGO CUSTOR TO JSON STRING 
+    json_latest = json.loads(dump_latest) # CONVERT TO ACTUAL JSON 
+    return jsonify(json_latest)  # RETURN JSON 
+
+
 
 @app.route("/api/population/countries")
 def countries():
     countries = mongo.db.countriesPopulation.find()
-    return dumps(countries)
+    dump_countries = dumps(countries)
+    json_countries = json.loads(dump_countries)
+    return jsonify(json_countries) 
 
 @app.route('/api/population/cities')
 def cities():
     cities = mongo.db.citiesPopulation.find()
-    return dumps(cities)
+    dump_cities = dumps(cities)
+    json_cities = json.loads(dump_cities)
+    return jsonify(json_cities) 
 
 
 
