@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect
 from flask_pymongo import PyMongo
 from bson.json_util import dumps
 
-# import population_ETL
+import population_ETL
 
 # Flask Setup
 app = Flask(__name__)
