@@ -1,0 +1,5 @@
+*/__pycache__
+
+*.pyc
+Cicily/__pycache__/app.cpython-38.pyc
+Cicily/__pycache__/population_ETL.cpython-38.pyc
