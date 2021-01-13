@@ -127,7 +127,7 @@ conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
 
 db_name = "populationDB"
-# Drop database if exists
+# # Drop database if exists
 if bool(db_name in client.list_database_names()):
     client.drop_database(db_name)
 
@@ -142,11 +142,14 @@ latestPop = db["latestPopulation"]
 def insertToDB(df, collection):
     df.reset_index(inplace=True) # Reset Index
     data_dict = df.to_dict("records") # Convert to dictionary
+    # json_data = json.dumps(data_dict)
     collection.insert_one({"index":"populationData","data":data_dict})
-    
+    # collection.update({}, data_dict, upsert=True)
+
 # insert into DB
 insertToDB(df_countries, countriesPop)
 insertToDB(df_cityPop, citiesPop)
 insertToDB(df_LatestPop, latestPop)
+
 
 print(db.list_collection_names())
