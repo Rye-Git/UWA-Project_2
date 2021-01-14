@@ -112,7 +112,7 @@ df_population.drop(df_population.index[df_population['Country'] == 'Eritrea'], i
 for col in df_population:
     # performing operations on columns other than Country and Country_Code columns
     if col not in ["Country_Code_3", "Country"]:
-        df_population[col] = df_population[col].astype(float)  # Converting string to number
+        df_population[col] = df_population[col].astype(float).astype(int)  # Converting string to number
 
 
 
