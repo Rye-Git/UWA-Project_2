@@ -41,14 +41,30 @@ df_LatestPop['World_Percentage'] = pd.to_numeric(df_LatestPop['World_Percentage'
 
 
 
+# Scraping Country codes to merge datasets with
+#####################################################
+# url to scrape for ISO 3166 country codes Alpha-2 and Alpha-3 from www.iban.com
+country_code_url ="https://www.iban.com/country-codes"
+# Use panda's `read_html` to parse the url
+df_countryCode = pd.read_html(country_code_url, header=0)[0]
+# eliminating unnessasary data
+df_countryCode = df_countryCode.iloc[:,[1,2]]
+# rename the columns
+df_countryCode.rename(columns={'Alpha-2 code':'Country_Code',
+                               'Alpha-3 code':'Country_Code_3'
+                              },inplace=True)
+#####################################################
+
+
 # Countries Population Data
 #####################################################
 # read Countries population data from csv(source:https://worldpopulationreview.com) into dataframe
 df_countries = pd.read_csv('static/data/csvData.csv')
 # eliminating unnessasary data
-df_countries = df_countries.iloc[:,[1,2,3,6,7,8,9]]
+df_countries = df_countries.iloc[:,[0,1,2,3,6,7,8,9]]
 # rename the columns
-df_countries.rename(columns={'name':'Country',
+df_countries.rename(columns={'cca2':'Country_Code',
+                             'name':'Country',
                              'pop2020':'2020',
                              'pop2019':'2019',
                              'pop2015':'2015',
@@ -61,7 +77,7 @@ df_countries.rename(columns={'name':'Country',
 # Loop through the columns
 for col in df_countries:
     # performing operations on columns other than Country column
-    if col != "Country":
+    if col not in ["Country_Code", "Country"]:
         df_countries[col] = df_countries[col].astype(str)  # Converting to string
 
         df_countries[col] = [x.split(".") for x in df_countries[col]]    # Split into 2 strings at the decimal point
@@ -72,82 +88,63 @@ for col in df_countries:
                          else x[0] + x[1][0:3] + '00' \
                             for x in df_countries[col]]
 
-        df_countries[col] = df_countries[col].astype(int)     # Convering back to number 
-        
+        df_countries[col] = df_countries[col].astype(int)     # Converting back to number 
 
 
 
 
-# Merging with Another dataset
+# Another Dataset to merge for additional years data
 #####################################################
-# Another Dataset
 # Cleaning csv Population data from https://datacatalog.worldbank.org
 # reading csv's into dataframes
 df_population = pd.read_csv('static/data/population.csv')
 
-# Creating a list of required row indexes
-row_list = []
-for x in range(217):
-    row_list.append(x)
-row_list.append(263)
-
 # Function to Clean each dataframes
-def clean_dataFrames(df):
+def clean_dataFrames(df, col_list):
     # eliminating unnecessary data
-    df = df.iloc[row_list, [2,11,12,13]]
+    df = df.iloc[0:217, col_list]
     # renaming columns
+    df.rename(columns= {df.columns[0]: "Name"}, inplace = True)
     df = df.rename(columns = lambda x : (str(x)[:-9]))
-    df.rename(columns= {df.columns[0]: "Country"}, inplace = True)
+    df.rename(columns= {df.columns[0]: "Country", df.columns[1]: "Country_Code_3"}, inplace = True)
     return df
 
+# list of required column indexes
+col_list = [2,3,11,12,13]
 # Calling clean_dataFrames function passing the dataframe as parameter
-df_population = clean_dataFrames(df_population)
+df_population = clean_dataFrames(df_population, col_list)
 
+# Removing row with no values for the required years(Country Eritrea)
 df_population.drop(df_population.index[df_population['Country'] == 'Eritrea'], inplace = True)
 
-# Loop through the columns
+# Loop through the columns to covert values from string to 
 for col in df_population:
-    # performing operations on columns other than Country column
-    if col != "Country":
-        df_population[col] = df_population[col].astype(float)  # Converting string to integer
-        df_population[col] = df_population[col].astype(int)  # Converting string to integer
-
-# Checking for countries that has records in df_countries, but not in df_population
-mismatch_df = df_countries[~df_countries.Country.isin(df_population.Country)]
-
-# Renaming the Countries to match the dataframes if Country name is df_countries a substring of 
-# Country name in df_population
-for country in mismatch_df['Country']: 
-    df_population["Country"].loc[df_population['Country'].str.contains(country)] = country
-
-# Changing the Other Country names in df_population to match with df_countries
-df_population["Country"].loc[df_population.Country == "Congo, Dem. Rep."] = "DR Congo"
-df_population["Country"].loc[df_population.Country == "Congo, Rep."] = "Republic of the Congo"
-df_population["Country"].loc[df_population.Country == "Korea, Rep."] = "South Korea"
-df_population["Country"].loc[df_population.Country == "Korea, Dem. People’s Rep."] = "North Korea"
-df_population["Country"].loc[df_population.Country == "Cote d'Ivoire"] = "Ivory Coast"
-df_population["Country"].loc[df_population.Country == "Lao PDR"] = "Laos"
-df_population["Country"].loc[df_population.Country == "Macao SAR, China"] = "Macau"
-df_population["Country"].loc[df_population.Country == "Kyrgyz Republic"] = "Kyrgyzstan"
-df_population["Country"].loc[df_population.Country == "Slovak Republic"] = "Slovakia"
-df_population["Country"].loc[df_population.Country == "Eswatini"] = "Swaziland"
-df_population["Country"].loc[df_population.Country == "Cabo Verde"] = "Cape Verde"
-df_population["Country"].loc[df_population.Country == "St. Lucia"] = "Saint Lucia"
-df_population["Country"].loc[df_population.Country == "St. Vincent and the Grenadines"] = "Saint Vincent and the Grenadines"
-df_population["Country"].loc[df_population.Country == "Virgin Islands (U.S.)"] = "United States Virgin Islands"
-df_population["Country"].loc[df_population.Country == "St. Kitts and Nevis"] = "Saint Kitts and Nevis"
-df_population["Country"].loc[df_population.Country == "St. Martin (French part)"] = "Saint Martin"
-
-mismatch_df = df_countries[~df_countries.Country.isin(df_population.Country)]
+    # performing operations on columns other than Country and Country_Code columns
+    if col not in ["Country_Code_3", "Country"]:
+        df_population[col] = df_population[col].astype(float)  # Converting string to number
 
 
 
-# merging two dataframes for additional years
-df_countries = df_countries.merge(df_population, on="Country", how="left")
+
+# merging two dataframes for additional years data
+#####################################################
+
+# merging df_population with df_countryCode
+df_population = df_countryCode.merge(df_population, on="Country_Code_3", how="right")
+# removing Country_Code_3 column
+del df_population['Country_Code_3']
+
+
+# merging df_population with df_countries
+df_countries = df_countries.merge(df_population, on="Country_Code", how="left")
+# removing Country_Code_3 column
+del df_countries['Country_y']
+# renaming columns
+df_population.rename(columns= {"Country_x": "Country"}, inplace = True)
 # reordering the columns
-df_countries = df_countries.iloc[:,[0,1,2,9,8,7,3,4,5,6]]
+df_countries = df_countries.iloc[:,[0,1,2,3,10,9,8,4,5,6,7]]
 # Replace null values with 0
-df_countries.fillna(0,inplace = True)
+df_countries.fillna(0, inplace = True)
 #####################################################
 
 #####################################################
@@ -175,8 +172,9 @@ latestPop = db["latestPopulation"]
 
 # Function to insert Dataframes into mongodb collections
 def insertToDB(df, collection):
-    df.reset_index(inplace=True) # Reset Index
     data_dict = df.to_dict("records") # Convert to dictionary
+    # removing index from data
+    data_dict = [{k: v for k, v in d.items() if k != 'index'} for d in data_dict]
     collection.insert_one({"data":data_dict}) # Insert dict to collection
 
 
