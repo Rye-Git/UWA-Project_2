@@ -78,17 +78,8 @@ df_countries.rename(columns={'cca2':'Country_Code',
 for col in df_countries:
     # performing operations on columns other than Country column
     if col not in ["Country_Code", "Country"]:
-        df_countries[col] = df_countries[col].astype(str)  # Converting to string
-
-        df_countries[col] = [x.split(".") for x in df_countries[col]]    # Split into 2 strings at the decimal point
-
-        # concatenating both strings choosing only 3 digits from the second string(decimal part)
-        df_countries[col] = [ x[0] + x[1][0:3] if len(x[1]) >= 3 \
-                         else x[0] + x[1][0:3] + '0' if len(x[1]) == 2 \
-                         else x[0] + x[1][0:3] + '00' \
-                            for x in df_countries[col]]
-
-        df_countries[col] = df_countries[col].astype(int)     # Converting back to number 
+        # correcting the decimal positions
+        df_countries[col] = (df_countries[col] * 1000).astype(int)
 
 
 
