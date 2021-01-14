@@ -1,41 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population World</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>World Population Analysis</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>  
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+crossorigin=""/>
+<!-- Our CSS -->
+<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+<!-- Linking to css and javascript file under static folder -->
+<link rel="stylesheet" type="text/css" href= {{ url_for("static", filename="css/apiDoc.css") }} >
   
-  
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"/>
-
-    <!-- ############################## -->
-  <!-- <link rel="stylesheet" href="static/css/apiDoc.css"> -->
-
-  <!-- Linking to css and javascript file under static folder -->
-  <link rel="stylesheet" type="text/css" href= {{ url_for("static", filename="css/apiDoc.css") }} >
-  
-
 </head>
-
 <body>
-  <div clas="container" id="page">
-    <div class="row">
-        <div class="col-md-12">
-            <strong>Click here: </strong><a href="/api">Population dataset API</a>
 
-        </div>
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Portfolio</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
     </div>
   </div>
-   <!-- d3 JavaScript -->
-   <script src="https://d3js.org/d3.v5.min.js"></script>
+</nav>
+<!-- End Navbar -->
 
-   <script src="../static/js/logic.js"></script>
-   
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- World Map -->
+<div class="container-fluid bg-3 text-center" style="margin-top: 100px ;">    
+  <div class="container">  
+    <h3>World Population In a Glance</h3><br>
+     <div class="row">
+      <div class="col-sm-2">
+        <h4 class='page-header'>Select a country</h4>
+                        <form>
+                            <select name="Country" class='selector' id="state-selector-1" autofocus="autofocus"
+                                autocorrect="off" autocomplete="off" placeholder='Enter state or abb'>
+                                <option value='' data-alternative-spellings='US' selected>All Countries</option>
+                                <option value="China" data-alternative-spellings='China'>China</option>
+                                <option value="India" data-alternative-spellings='India'>India</option>
+                                <option value="U.S.A." data-alternative-spellings='U.S.A.'>U.S.A.</option>
+                                <option value="Indonesia" data-alternative-spellings='Indonesia'>Indonesia</option>
+                                <option value="Pakistan" data-alternative-spellings='Pakistan'>Pakistan</option>
+                                <option value="Brazil" data-alternative-spellings='Brazil'>Brazil</option>
+                                <option value="Nigeria" data-alternative-spellings='Nigeria'>Nigeria</option>
+                                <option value="Bangladesh" data-alternative-spellings='Bangladesh'>Bangladesh</option>
+                                <option value="Russia" data-alternative-spellings='Russia'>Russia</option>
+                                <option value="Mexico" data-alternative-spellings='Mexico'>Mexico</option>
+                            </select>
+                        </form>
+                        <input type="button" class="btn btn-default btn-sm state-btn" value ='Select' style="margin-top: 7px;">         
+
+        <h4 class='page-header'>Select a Year</h4>
+                        <form>
+                            <select name="Year" class='selector' id="state-selector-1" autofocus="autofocus"
+                                autocorrect="off" autocomplete="off" placeholder='Enter state or abb'>
+                                <option value='' data-alternative-spellings='US' selected>All Years</option>
+                                <option value="2019" data-alternative-spellings='19'>2019</option>
+                                <option value="2020" data-alternative-spellings='20'>2020</option>
+                            </select>
+                        </form>
+                        <input type="button" class="btn btn-default btn-sm state-btn" value ='Select' style="margin-top: 7px;"> 
+
+        <h4 class='page-header'>Total World Population</h4>
+                    <h5>7,794,798,739</h5>
+
+        <h4 class='page-header'>Yearly Change</h4>
+                    <h5>+ 1.05%</h5>
+
+        <!-- API Link -->
+        <h4 class='page-header'>Population Dataset</h4>
+                    <h5><a href="/project2/UWA-Project_2/source_code/templates/api.html">API</a></h5>
+
+      </div>
+      <!-- The div that holds our map -->
+      <div class="col-md-10" id="mapbox">
+        <div class="thumbnail" id='map' style="background-color:rgb(196, 185, 164); height: 800px; width: 950px;">
+            
+        </div>
+    </div>
+  </div><br>
+  
+  <!-- End World Map -->
+
+  <!-- Data Analysis -->
+  <div class="container-fluid bg-3 text-center"> 
+    <div class="container">    
+        <h3 class="text-center">Data Analysis</h3><br>
+        <hr>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 400px; padding: 10px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.22.53.png" class="img-responsive" style="width:100%" alt="Image">
+      </div>
+    </div>
+      <div class="col-md-7">
+        <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 400px; padding: 10px;">
+        <p style="color: rgb(71, 58, 6); padding: 15px;">You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there. People use it because it has a fairly normal distribution of letters and words (making it look like normal English), but it’s also Latin, which means your average reader won’t get distracted by trying to read it. It’s perfect for showcasing design work as it should look when fleshed out with text, because it allows viewers to focus on the design work itself, instead of the text. It’s also a great way to showcase the functionality of programs like word processors, font types, and more.
+
+            formatting in place. All you have to do is click the heading of any section on this page, and that HTML-Ipsum block is copied to your clipboard and ready to be loaded into a website redesign template, brand new design mockup, or any other digital project you might need dummy text for.
+            
+            No matter the project, please remember to replace your fancy HTML-Ipsum with real content before you go live - this is especially important if you're planning to implement a content-based marketing strategy for your new creation! Lorem Ipsum text is all well and good to demonstrate a design or project, but if you set a website loose on the Internet without replacing dummy text with relevant, high quality content, you’ll run into all sorts of potential Search Engine Optimization issues like thin content, duplicate content, and more.</p>
+          </div>
+    </div>
+    </div>
+  </div><br><br>
+  <!-- End Data Analysis -->
+
+  <!-- Final Plots -->
+  <div class="container-fluid bg-3 text-center">  
+    <div class="container">   
+    <div class="row">
+      <div class="col-sm-4">
+        <p style="color: rgb(202, 121, 28); font-size: 17px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.05.png" width="400" height="500" alt="Image">
+        <p style="padding: 12px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+        </div>  
+    </div>
+      <div class="col-sm-4"> 
+        <p style="color: rgb(202, 121, 28); font-size: 17px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.54.png"  width="400" height="500" alt="Image">
+        <p style="padding: 12px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+        </div>  
+    </div>
+      <div class="col-sm-4"> 
+        <p style="color: rgb(202, 121, 28); font-size: 17px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.22.39.png" width="400" height="500" alt="Image">
+        <p style="padding: 12px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div><br><br>
+  <!-- End Final Plots -->
+
+<!-- Data Summary -->
+<div class="container-fluid bg-3 text-center">
+  <div class="container"> 
+    <h3>Data Summary</h3><br>
+    <hr>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-8">
+    <div class="thumbnail" style="background-color:rgb(196, 185, 164); height: 600px; padding: 10px;">
+    <p style="color: rgb(71, 58, 6); padding: 12px;">You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there. People use it because it has a fairly normal distribution of letters and words (making it look like normal English), but it’s also Latin, which means your average reader won’t get distracted by trying to read it. It’s perfect for showcasing design work as it should look when fleshed out with text, because it allows viewers to focus on the design work itself, instead of the text. It’s also a great way to showcase the functionality of programs like word processors, font types, and more.
+
+        We’ve taken Lorem Ipsum to the next level with our HTML-Ipsum tool. As you can see, this Lorem Ipsum is tailor-made for websites and other online projects that are based in HTML. Most web design projects use Lorem Ipsum excerpts to begin with, but you always have to spend an annoying extra minute or two formatting it properly for the web.
+        
+        Maybe you have a custom-styled ordered list you want to show off, or maybe you just want a long chunk of Lorem Ipsum that’s already wrapped in paragraph tags. No matter the need, we’ve put together a number of Lorem Ipsum samples ready to go with HTML tags and formatting in place. All you have to do is click the heading of any section on this page, and that HTML-Ipsum block is copied to your clipboard and ready to be loaded into a website redesign template, brand new design mockup, or any other digital project you might need dummy text for.
+        
+        No matter the project, please remember to replace your fancy HTML-Ipsum with real content before you go live - this is especially important if you're planning to implement a content-based marketing strategy for your new creation! Lorem Ipsum text is all well and good to demonstrate a design or project, but if you set a website loose on the Internet without replacing dummy text with relevant, high quality content, you’ll run into all sorts of potential Search Engine Optimization issues like thin content, duplicate content, and more.</p>
+      </div>
+</div>
+<div class="col-md-2">
+</div>
+</div>
+</div>
+</div><br><br>
+<!-- End Data Summary -->
+
+<!-- Team Members -->
+<div class="container-fluid bg-3 text-center">       
+  <div class="container"> 
+  <h3 class="text-center">Team Members</h3><br>
+    <hr>
+<div class="row">
+    <div class="col-md-1">
+      </div>
+
+  <div class="col-md-2">
+    <div class="thumbnail" id='rye-bio' style="background-color:rgb(196, 185, 164); height: 700px; padding: 10px;">
+    <img src="../static/images/rye.jpg" width="400" height="300" alt="Rye">
+    <br>
+      <p style="color: rgb(151, 93, 38);"><strong>Rye Capati</strong></p>
+      <hr>
+      <p style="color: rgb(83, 44, 8);">Rye has panned out from IT Service Desk to providing high quality On-site Support to clients which then progressed to leading and managing an IT Site Support Team. 
+        
+        You can view Rye’s LinkedIn <a href='https://www.linkedin.com/in/rye-capati-2589b315a/'>here</a>
+    </p>
+    </div> 
+</div>
+
+<div class="col-md-2">
+  <div class="thumbnail" id='stephen-bio' style="background-color:rgb(196, 185, 164); height: 700px; padding: 10px;">
+  <img src="../static/images/stive.jpg" width="400" height="300" alt="Stephen">
+  <br>
+    <p style="color: rgb(151, 93, 38);"><strong>Stephen Milton</strong></p>
+    <hr>
+    <p style="color: rgb(83, 44, 8);">Organized data analyst with a strong portfolio in analysing data with different tools such as Microsoft Excel, Tableau and Python. Bachelor of Statistics and certificate in data visualization from UWA with excellent grades, having working knowledge of financial analysis and economics with 10 years of experience as a senior bank advisor.
+      
+      You can view Stephen LinkedIn <a href='https://www.linkedin.com/in/stephen-milton-4765ab84/'>here</a>
+  </p>
+  </div> 
+</div>
+
+<div class="col-md-2">
+  <div class="thumbnail" id='cicily-bio' style="background-color:rgb(196, 185, 164); height: 700px; padding: 10px;">
+  <img src="../static/images/cicily.jpg" width="400" height="300" alt="Cicily">
+  <br>
+    <p style="color: rgb(151, 93, 38);"><strong>Cicily George</strong></p>
+    <hr>
+    <p style="color: rgb(83, 44, 8);">Organized data analyst with a strong portfolio in analysing data with different tools such as Microsoft Excel, Tableau and Python. Bachelor of Statistics and certificate in data visualization from UWA with excellent grades, having working knowledge of financial analysis and economics with 10 years of experience as a senior bank advisor.
+      
+      You can view Cicily LinkedIn <a href='https://www.linkedin.com/in/cicily-george-a235731a2/'>here</a>
+  </p>
+  </div> 
+</div>
+
+<div class="col-md-2">
+  <div class="thumbnail" id='parastoo-bio' style="background-color:rgb(196, 185, 164); height: 700px; padding: 10px;">
+  <img src="../static/images/parastoo.jpg" width="400" height="300" alt="Parastoo">
+  <br>
+    <p style="color: rgb(151, 93, 38);"><strong>Parastoo Razavi</strong></p>
+    <hr>
+    <p style="color: rgb(83, 44, 8);">Organized data analyst with a strong portfolio in analysing data with different tools such as Microsoft Excel, Tableau and Python. Bachelor of Statistics and certificate in data visualization from UWA with excellent grades, having working knowledge of financial analysis and economics with 10 years of experience as a senior bank advisor.
+      
+      You can view Parastoo’s LinkedIn <a href='https://www.linkedin.com/in/parastoo-razavi/'>here</a>
+  </p>
+  </div> 
+</div>
+
+
+<div class="col-md-2">
+  <div class="thumbnail" id='ezra-bio' style="background-color:rgb(196, 185, 164); height: 700px; padding: 10px;">
+  <img src="https://placehold.it/150x80?text=IMAGE" width="400" height="300" alt="Ezra">
+  <br>
+    <p style="color: rgb(151, 93, 38);"><strong>Ezra Tassone</strong></p>
+    <hr>
+    <p style="color: rgb(83, 44, 8);">Organized data analyst with a strong portfolio in analysing data with different tools such as Microsoft Excel, Tableau and Python. Bachelor of Statistics and certificate in data visualization from UWA with excellent grades, having working knowledge of financial analysis and economics with 10 years of experience as a senior bank advisor.
+      
+      You can view Ezra LinkedIn <a href='https://www.linkedin.com/in/ezra-tassone-73a3191b3/'>here</a>
+  </p>
+  </div> 
+</div>
+
+  <div class="col-md-1">
+</div>
+</div>
+</div><br><br>
+<!-- End Team Members -->
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+  crossorigin=""></script>
+
+<!-- D3 JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="../static/js/logic.js"></script>
+
+ <!-- API key -->
+ <script type="text/javascript" src="../static/js/config.js"></script>
+
+<!-- Our JavaScript -->
+ <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
+ <script type="text/javascript" src="../static/js/logic2.js"></script>
+ 
+
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  <footer class="container-fluid text-center" style="height: 4px;">
+    <p>Copyright © 2021 UWA Bootcamps. All rights reserved.</p>
+  </footer>
+  </body>
+  </html>
