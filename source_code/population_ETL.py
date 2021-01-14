@@ -1,6 +1,6 @@
 import pandas as pd
 import pymongo
-import json
+import numpy as np
 
 
 # Cities Data
@@ -14,8 +14,9 @@ df_cityPop.rename(columns={'Name':'City',
                            '2020 Population':'2020',
                            '2019 Population':'2019'
                           },inplace=True)
-# Replace null values with 0
 df_cityPop.fillna(0,inplace = True)
+#  converting column 2019 from float to int
+df_cityPop['2019'] = df_cityPop['2019'].apply(np.int32)
 #####################################################
 
 
@@ -23,17 +24,19 @@ df_cityPop.fillna(0,inplace = True)
 #####################################################
 # url to scrape for the Live population data
 countries_url ="https://worldpopulationreview.com"
-# Use panda's `read_html` to parse the url
+# Use pandas `read_html` to parse the url
 df_LatestPop = pd.read_html(countries_url, header=0)[0]
 # eliminating unnessasary data
-df_LatestPop = df_LatestPop.iloc[:,[1,2,5,6,7,8]]
+df_LatestPop = df_LatestPop.iloc[:,[1,2,4,5,6,7,8]]
 # rename the columns
-df_LatestPop.rename(columns={'2019 Density':'Density_PerSqKm', 
+df_LatestPop.rename(columns={'Area':'Area_SqKm',
+                             '2019 Density':'Density_PerSqKm',
                              'Growth Rate':'Growth_Percentage', 
                              'World %':'World_Percentage'
                             },inplace=True)
                             
 # Converting string values to numbers
+df_LatestPop['Area_SqKm'] = pd.to_numeric(df_LatestPop['Area_SqKm'].str.rsplit(' ', 0).str.get(0).str.replace(r',', ''))
 df_LatestPop['Density_PerSqKm'] = pd.to_numeric(df_LatestPop['Density_PerSqKm'].str.rsplit('/', 0).str.get(0).str.replace(r',', ''))
 df_LatestPop['Growth_Percentage'] = pd.to_numeric(df_LatestPop['Growth_Percentage'].str.rsplit('%', 0).str.get(0))
 df_LatestPop['World_Percentage'] = pd.to_numeric(df_LatestPop['World_Percentage'].str.rsplit('%', 0).str.get(0))
@@ -60,18 +63,23 @@ df_countryCode.rename(columns={'Alpha-2 code':'Country_Code',
 #####################################################
 # read Countries population data from csv(source:https://worldpopulationreview.com) into dataframe
 df_countries = pd.read_csv('static/data/csvData.csv')
-# eliminating unnessasary data
-df_countries = df_countries.iloc[:,[0,1,2,3,6,7,8,9]]
 # rename the columns
 df_countries.rename(columns={'cca2':'Country_Code',
                              'name':'Country',
+                             'pop2050':'2050',
+                             'pop2030':'2030',
                              'pop2020':'2020',
                              'pop2019':'2019',
                              'pop2015':'2015',
                              'pop2010':'2010',
                              'pop2000':'2000',
-                             'pop1990':'1990' 
+                             'pop1990':'1990',
+                             'pop1980':'1980',
+                             'pop1970':'1970' 
                             },inplace=True)
+
+# # eliminating unnessasary data
+df_countries = df_countries.iloc[:,[0,1,4,5,2,3,6,7,8,9,10,11]]
 
 # Removing decimal point from data
 # Loop through the columns
@@ -112,7 +120,8 @@ df_population.drop(df_population.index[df_population['Country'] == 'Eritrea'], i
 for col in df_population:
     # performing operations on columns other than Country and Country_Code columns
     if col not in ["Country_Code_3", "Country"]:
-        df_population[col] = df_population[col].astype(float)  # Converting string to number
+        # Converting string to number
+        df_population[col] = df_population[col].astype(float).apply(np.int32)
 
 
 
@@ -123,7 +132,7 @@ for col in df_population:
 # merging df_population with df_countryCode
 df_population = df_countryCode.merge(df_population, on="Country_Code_3", how="right")
 # removing Country_Code_3 column
-del df_population['Country_Code_3']
+del df_population['Country_Code_3'] 
 
 
 # merging df_population with df_countries
@@ -131,11 +140,13 @@ df_countries = df_countries.merge(df_population, on="Country_Code", how="left")
 # removing Country_Code_3 column
 del df_countries['Country_y']
 # renaming columns
-df_population.rename(columns= {"Country_x": "Country"}, inplace = True)
+df_countries.rename(columns= {"Country_x": "Country"}, inplace = True)
 # reordering the columns
-df_countries = df_countries.iloc[:,[0,1,2,3,10,9,8,4,5,6,7]]
-# Replace null values with 0
-df_countries.fillna(0, inplace = True)
+df_countries = df_countries.iloc[:,[0,1,2,3,4,5,14,13,12,6,7,8,9,10,11]]
+# # Replace null values with 0
+df_countries.fillna(0,inplace = True)
+# converting float values to int
+df_countries[['2016','2017','2018']] = df_countries[['2016','2017','2018']].apply(np.int32)
 #####################################################
 
 #####################################################
