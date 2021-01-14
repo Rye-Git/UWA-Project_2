@@ -20,14 +20,9 @@ h5 {
   color: #f1e4d7;
 }
 
-#map{
-height: 300px;
-width: 100%;
-margin-right: 60px;
-margin-left: 400px;
-margin-top: 80px;
-margin-bottom: 450px;
-}
+#map {
+  width: 800px;
+  height: 950px; }
 
 .box {
   height: 400px;
@@ -113,7 +108,7 @@ footer {
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 950px) {
   .navbar {  
     padding: inherit;
   } 
