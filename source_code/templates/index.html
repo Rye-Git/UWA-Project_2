@@ -17,6 +17,8 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
 integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
 crossorigin=""/>
+<!-- Jsuits library for Dropdown -->
+<link rel="stylesheet" href="https://jsuites.net/v3/jsuites.css" type="text/css" />
 <!-- Our CSS -->
 <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 <!-- Linking to css and javascript file under static folder -->
@@ -53,7 +55,8 @@ crossorigin=""/>
      <div class="row">
       <div class="col-sm-2">
         <h4 class='page-header'>Select a country</h4>
-                        <form>
+        <div id="dropdown"></div>
+                        <!-- <form>
                             <select name="Country" class='selector' id="state-selector-1" autofocus="autofocus"
                                 autocorrect="off" autocomplete="off" placeholder='Enter state or abb'>
                                 <option value='' data-alternative-spellings='US' selected>All Countries</option>
@@ -69,7 +72,7 @@ crossorigin=""/>
                                 <option value="Mexico" data-alternative-spellings='Mexico'>Mexico</option>
                             </select>
                         </form>
-                        <input type="button" class="btn btn-default btn-sm state-btn" value ='Select' style="margin-top: 7px;">         
+                        <input type="button" class="btn btn-default btn-sm state-btn" value ='Select' style="margin-top: 7px;">          -->
 
         <h4 class='page-header'>Select a Year</h4>
                         <form>
@@ -277,10 +280,16 @@ crossorigin=""/>
  <!-- API key -->
  <script type="text/javascript" src="../static/js/config.js"></script>
 
+ <!-- Jsuits library for Dropdown -->
+ <script src="https://jsuites.net/v3/jsuites.js"></script>
+
 <!-- Our JavaScript -->
  <!-- <script type="text/javascript" src="static/js/logic.js"></script> -->
  <script type="text/javascript" src="../static/js/logic2.js"></script>
+ <script type="text/javascript" src="../static/js/logic_dropdown.js"></script>
  
+
+
 
  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>

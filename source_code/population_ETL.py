@@ -53,8 +53,8 @@ df_countryCode = pd.read_html(country_code_url, header=0)[0]
 # eliminating unnessasary data
 df_countryCode = df_countryCode.iloc[:,[1,2]]
 # rename the columns
-df_countryCode.rename(columns={'Alpha-2 code':'Country_Code',
-                               'Alpha-3 code':'Country_Code_3'
+df_countryCode.rename(columns={'Alpha-2 code':'Country_Code_2',
+                               'Alpha-3 code':'Country_Code'
                               },inplace=True)
 #####################################################
 
@@ -64,7 +64,7 @@ df_countryCode.rename(columns={'Alpha-2 code':'Country_Code',
 # read Countries population data from csv(source:https://worldpopulationreview.com) into dataframe
 df_countries = pd.read_csv('static/data/csvData.csv')
 # rename the columns
-df_countries.rename(columns={'cca2':'Country_Code',
+df_countries.rename(columns={'cca2':'Country_Code_2',
                              'name':'Country',
                              'pop2050':'2050',
                              'pop2030':'2030',
@@ -85,7 +85,7 @@ df_countries = df_countries.iloc[:,[0,1,4,5,2,3,6,7,8,9,10,11]]
 # Loop through the columns
 for col in df_countries:
     # performing operations on columns other than Country column
-    if col not in ["Country_Code", "Country"]:
+    if col not in ["Country_Code_2", "Country"]:
         # correcting the decimal positions
         df_countries[col] = (df_countries[col] * 1000).astype(int)
 
@@ -105,7 +105,7 @@ def clean_dataFrames(df, col_list):
     # renaming columns
     df.rename(columns= {df.columns[0]: "Name"}, inplace = True)
     df = df.rename(columns = lambda x : (str(x)[:-9]))
-    df.rename(columns= {df.columns[0]: "Country", df.columns[1]: "Country_Code_3"}, inplace = True)
+    df.rename(columns= {df.columns[0]: "Country", df.columns[1]: "Country_Code"}, inplace = True)
     return df
 
 # list of required column indexes
@@ -118,11 +118,10 @@ df_population.drop(df_population.index[df_population['Country'] == 'Eritrea'], i
 
 # Loop through the columns to covert values from string to 
 for col in df_population:
-    # performing operations on columns other than Country and Country_Code columns
-    if col not in ["Country_Code_3", "Country"]:
+    # on columns other than Country and Country_Code_2
+    if col not in ["Country_Code", "Country"]:
         # Converting string to number
         df_population[col] = df_population[col].astype(float).apply(np.int32)
-
 
 
 
@@ -130,20 +129,18 @@ for col in df_population:
 #####################################################
 
 # merging df_population with df_countryCode
-df_population = df_countryCode.merge(df_population, on="Country_Code_3", how="right")
-# removing Country_Code_3 column
-del df_population['Country_Code_3'] 
+df_population = df_countryCode.merge(df_population, on="Country_Code", how="right")
 
 
 # merging df_population with df_countries
-df_countries = df_countries.merge(df_population, on="Country_Code", how="left")
-# removing Country_Code_3 column
-del df_countries['Country_y']
+df_countries = df_countries.merge(df_population, on="Country_Code_2", how="left")
+# removing duplicated Country column and Country_Code_2
+df_countries = df_countries.drop(['Country_y', 'Country_Code_2'], axis=1)
 # renaming columns
 df_countries.rename(columns= {"Country_x": "Country"}, inplace = True)
 # reordering the columns
-df_countries = df_countries.iloc[:,[0,1,2,3,4,5,14,13,12,6,7,8,9,10,11]]
-# # Replace null values with 0
+df_countries = df_countries.iloc[:,[0,11,1,2,3,4,5,14,13,12,6,7,8,9,10]]
+# Replace null values with 0
 df_countries.fillna(0,inplace = True)
 # converting float values to int
 df_countries[['2016','2017','2018']] = df_countries[['2016','2017','2018']].apply(np.int32)
