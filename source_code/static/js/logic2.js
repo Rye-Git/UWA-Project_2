@@ -47,6 +47,7 @@ var cities = [
   }
 ];
 
+
 // Loop through the cities array and create one marker for each city object
 for (var i = 0; i < cities.length; i++) {
   L.circle(cities[i].location, {
