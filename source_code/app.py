@@ -14,11 +14,6 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/populationDB")
 
 # Flask Routes
 
-# @app.route('/api')
-# def dataset():
-#     return render_template('api.html')
-
-
 @app.route('/api/population/latest')
 def latest():
     latest = mongo.db.latestPopulation.find() # PYMONGO CURSOR 
