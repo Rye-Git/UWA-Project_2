@@ -20,17 +20,17 @@ var myMap = L.map("map", {
   }).addTo(myMap);
   
   // // Load in geojson data
-  // var geoData = "static/data/Median_Household_Income_2016.geojson";
+  var geoData = "/api/population/countries";
   
-  // var geojson;
+  var geojson;
   
   // // Grab data with d3
-  // d3.json(geoData, function(data) {
+  d3.json(geoData, function(data) {
   
-  //   // Create a new choropleth layer
-  //   geojson = L.choropleth(data, {
+    // Create a new choropleth layer
+    geojson = L.choropleth(data, {
   
-  //     // Define what  property in the features to use
+      // Define what  property in the features to use
   //     valueProperty: "MHI2016",
   
   //     // Set color scale
