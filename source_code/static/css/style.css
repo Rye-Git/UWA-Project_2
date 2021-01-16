@@ -1,13 +1,26 @@
 body {
+  background-image: url(/project2/UWA-Project_2/source_code/static/images/cool-background.jpg);
+  background-repeat: repeat;
+  background-position: center;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: rgb(66, 66, 66);
+  padding-top: 70px;
 }
+
+#map {
+  width: 95%;
+  height: 95%;
+  min-width: 700px;
+  min-height: 700px;
+  margin-left: 160px;
+}
+
+
 h3 {
-  font-size: 45px;
-  color: #a75717;
+  font-size: 50px;
+  color: rgb(119, 106, 83);
 }
 
 h4 {
@@ -21,8 +34,10 @@ h5 {
 }
 
 #map {
-  width: 800px;
-  height: 950px; }
+  width: 1200px;
+  height: 550px;
+margin-left: auto;
+margin-right: auto; }
 
 .box {
   height: 400px;
@@ -42,8 +57,21 @@ h5 {
   background-color: rgb(66, 66, 66);
   border-color: #252323;
   box-shadow: 6px 6px 10px rgb(34, 33, 33);
+  height: 100px;
 }
 
+.navbar-brand {
+  font-size:45px;
+  /* color: rgb(235, 226, 207);
+  margin-left: 50px;
+  margin-top: 15px ; */
+}
+
+.nav{
+  font-size:20px;
+  margin-left: 80px;
+  margin-top: 18px;
+}
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
@@ -57,13 +85,16 @@ h5 {
 }
 
 .leaflet-container {
-  overflow: visible;
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 .leaflet-popup-content {
   text-align: center;
 }
+.center {
+  display: block;
 
+}
 .legend {
   padding: 6px 8px;
   font: 12px Arial, Helvetica, sans-serif;

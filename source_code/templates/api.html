@@ -6,28 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>World Population API</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  
-  
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"/>
-
-    <!-- ############################## -->
-  <!-- <link rel="stylesheet" href="static/css/apiDoc.css"> -->
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">    <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!-- Linking to css and javascript file under static folder -->
-  <link rel="stylesheet" type="text/css" href= "../static/css/apiDoc.css">
+  <link rel="stylesheet" type="text/css" href= "../static/css/style.css">
 
 
 </head>
 
-<body>
-  <div clas="container" id="page">
+<body style="margin-left:15%;">
+
+  <!-- navigation part -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(66, 66, 66);">
+    <div class="container-fluid">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    <a class="navbar-brand" href="index.html" style="font-size: 45px; margin-top: 15px ; margin-left: 50px; color:rgb(201, 143, 19);">World</a>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav" style="font-size: 20px; margin-left: 80px; margin-top: 18px;">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="Max Temperature.html">Max Temperature</a>
+            <a class="dropdown-item" href="Humidity.html">Humidity</a>
+            <a class="dropdown-item" href="Cloudiness.html">Cloudiness</a>
+            <a class="dropdown-item" href="Wind Speed.html">wind Speed</a>
+          </div>
+        </li>
+        <li><a class="nav-link" href="/project2/UWA-Project_2/source_code/templates/summary.html">Summary</a></li>
+      <li><a class="nav-link" href="/project2/UWA-Project_2/source_code/templates/Data.html">Data</a></li>
+      <li><a class="nav-link" href="/project2/UWA-Project_2/source_code/templates/contact.html">Contact Us</a></li>
+      <li><a href="/project2/UWA-Project_2/source_code/templates/api.html">API</a></li>
+  
+      </ul>
+    </div>
+  
+  </nav>
+
+  <div clas="container" id="page" style="margin-top: 90px;">
     <div class="row">
 
         <div class="col-md-12">
-          <h2>World population dataset API Documentation</h2>
-          <h4>Endpoints</h4>
+          <h2 style="font-size: 40px; color: rgb(145, 101, 20);">World population dataset API Documentation</h2>
+          <hr style="height:2px;border-width:0;background-color:rgb(238, 234, 234)">
+          <h4 style="margin-top: 50px;">Endpoints</h4>
         </div>
         <div class="col-md-3 col-sm-12">
           <ul>
@@ -70,5 +99,8 @@
 
    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+   <footer class="container-fluid text-center" style="height: 4px;">
+    <p>Copyright © 2021 UWA Bootcamps. All rights reserved.</p>
+  </footer>
+  </body>
 </html>
