@@ -1,6 +1,7 @@
 import pandas as pd
 import pymongo
 import numpy as np
+from geopy.geocoders import Nominatim
 
 
 # Cities Data
@@ -17,7 +18,36 @@ df_cityPop.rename(columns={'Name':'City',
 df_cityPop.fillna(0,inplace = True)
 #  converting column 2019 from float to int
 df_cityPop['2019'] = df_cityPop['2019'].apply(np.int32)
+
+
+# Using geopy for coordinates of top 10 cities
 #####################################################
+# creating a dataframe with coordinates
+cities = []
+# iterate through top 10 rows
+for row in df_cityPop.head(10).itertuples():
+    try:
+        geolocator = Nominatim(user_agent="population_analysis")
+        city = row[2]
+        country = row[3]
+        loc = geolocator.geocode(city+','+ country)
+        
+        cities.append({"City": city,
+                    "Country": country,
+                    "Latitude": loc.latitude, 
+                    "Longitude": loc.longitude}) 
+    except:
+        print("City not found. Skipping...") 
+
+city_df = pd.DataFrame(cities)
+# merging city dataframes 
+df_cityPop = df_cityPop.merge(city_df, on=["City","Country"], how="left")
+# Replace null values with 0
+df_cityPop.fillna(0,inplace = True)
+#####################################################
+
+
+
 
 
 # Latest Data
@@ -55,7 +85,7 @@ df_countryCode = df_countryCode.iloc[:,[1,2]]
 # rename the columns
 df_countryCode.rename(columns={'Alpha-2 code':'Country_Code_2',
                                'Alpha-3 code':'Country_Code'
-                              },inplace=True)
+                              },inplace=True) 
 #####################################################
 
 
