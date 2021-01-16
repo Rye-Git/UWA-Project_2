@@ -1,0 +1,162 @@
+body {
+  background-image: url(/project2/UWA-Project_2/source_code/static/images/cool-background.jpg);
+  background-repeat: repeat;
+  background-position: center;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  padding-top: 70px;
+}
+
+#map {
+  width: 95%;
+  height: 95%;
+  min-width: 700px;
+  min-height: 700px;
+  margin-left: 160px;
+}
+
+
+h3 {
+  font-size: 50px;
+  color: rgb(119, 106, 83);
+}
+
+h4 {
+  font-size: 20px;
+  color: #be9d7e;
+}
+
+h5 {
+  font-size: 15px;
+  color: #f1e4d7;
+}
+
+#map {
+  width: 1200px;
+  height: 550px;
+margin-left: auto;
+margin-right: auto; }
+
+.box {
+  height: 400px;
+  padding: 10px;
+  color: #fff;
+  background: rgb(196, 185, 164);
+}
+
+.box2 {
+  height: 100px;
+  padding: 10px;
+  color: #fff;
+  background: rgb(196, 185, 164);
+}
+
+.navbar-inverse {
+  background-color: rgb(66, 66, 66);
+  border-color: #252323;
+  box-shadow: 6px 6px 10px rgb(34, 33, 33);
+  height: 100px;
+}
+
+.navbar-brand {
+  font-size:45px;
+  /* color: rgb(235, 226, 207);
+  margin-left: 50px;
+  margin-top: 15px ; */
+}
+
+.nav{
+  font-size:20px;
+  margin-left: 80px;
+  margin-top: 18px;
+}
+.container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.leaflet-pane leaflet-map-pane {
+  transform: translate3d(103.841px, -25.2109px, 0px);
+}
+
+.leaflet-container {
+  font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.leaflet-popup-content {
+  text-align: center;
+}
+.center {
+  display: block;
+
+}
+.legend {
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #555;
+  background: #fff;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.legend ul {
+  padding: 0;
+  margin: 0;
+  clear: both;
+  list-style-type: none;
+}
+
+.legend li {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+}
+
+.legend .min {
+  float: left;
+  padding-bottom: 5px;
+}
+
+.legend .max {
+  float: right;
+}
+
+.info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+.legend { text-align: left; line-height: 18px; color: rgb(51, 50, 50); } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+
+
+/* Add a gray background color and some padding to the footer */
+footer {
+  background-color: #f2f2f2;
+  padding: 25px;
+}
+
+
+@media (max-width: 950px) {
+  .navbar {  
+    padding: inherit;
+  } 
+  
+  .navbar div {  
+    background-color: rgb(66, 66, 66);
+  }
+
+  button{
+    margin-right: 60px;
+  }
+
+  .navbar-toggler {
+    color: #575555;
+  }
+}
+.thumbnail .container{
+    width: 900px;
+    margin: 0 auto;
+}
