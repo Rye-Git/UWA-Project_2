@@ -36,22 +36,23 @@ let geoDataURL = "static/data/countries.geojson";
     var cities = cityData[0]["data"];
     // Loop through top 10 cities and create city markers
     for (let i = 0; i < 10; i++) {
-      let coordinates = [cities[i].Latitude, cities[i].Longitude]
-      let population = cities[i]["2020"]
+      let coordinates = [cities[i].Latitude, cities[i].Longitude];
+      let population = cities[i]["2020"];
       // create a new marker, push it to the cityMarkers array
       // cityMarkers.push(
       //   L.marker(coordinates).bindPopup("<h1>" + cities[i].City + "</h1> <hr> <h3>Population: " + population + "</h3>")
       // );
       cityMarkers.push(
-        L.circle(coordinates,{
-          // stroke: false,
-          fillOpacity: 0.9,
-          color: "#222222",
-          fillColor: getMarkerColor(population),
-          radius: markerSize(population * 0.001)
-        }).bindPopup("<h1>" + cities[i].City + "</h1> <hr> <h3>Population: " + population + "</h3>")
-      );
-    }
+        L.circle(coordinates, {
+          fillOpacity: 0.75,
+          color: "white",
+          fillColor: "purple",
+          // Setting our circle's radius equal to the output of our markerSize function
+          // This will make our marker's size proportionate to its population
+          radius: population/40
+      }).bindPopup("<h1>" + cities[i].City + "</h1> <hr> <h3>Population: " + population + "</h3>"));
+      
+      }
     // Add all the cityMarkers to a new layer group.
     var cityLayer = L.layerGroup(cityMarkers);
     // Define variables for our tile layers
@@ -82,7 +83,7 @@ let geoDataURL = "static/data/countries.geojson";
     var myMap = L.map("map", {
       center: [34.0522, 10.2437],
       zoom: 2,
-      layers: [light, cityLayer]
+      layers: [light]
     });
     // Add the layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
@@ -147,6 +148,7 @@ let geoDataURL = "static/data/countries.geojson";
     }
     var geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
       info.addTo(myMap);
+    cityLayer.addTo(myMap);
       // var legend = L.control({position: 'bottomright'});
       // legend.onAdd = function (myMap) {
       //     var div = L.DomUtil.create('div', 'info legend'),
