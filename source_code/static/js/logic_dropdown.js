@@ -1,6 +1,6 @@
 
 let url = "/api/population/countries";
-d3.json(url).then(function(response){
+d3.json(url, function(response){
     window.country_list = [];
     let data = response[0]["data"];
     for (let i=0; i<data.length; i++) {
