@@ -9,13 +9,13 @@ body {
   padding-top: 70px;
 }
 
-#map {
-  width: 60%;
-  height: 100%;
+/* #map { */
+  /* width: 60%; */
+  /* height: 100%; */
   /* min-width: 700px;
   min-height: 500px; */
-  margin-left: 160px;
-}
+  /* margin-left: 160px; */
+/* } */
 
 
 h3 {
@@ -53,18 +53,11 @@ margin-right: auto; }
   background: rgb(196, 185, 164);
 }
 
-.navbar-inverse {
+.navbar {
   background-color: rgb(66, 66, 66);
   border-color: #252323;
   box-shadow: 6px 6px 10px rgb(34, 33, 33);
   height: 100px;
-}
-
-.navbar-brand {
-  font-size:45px;
-  /* color: rgb(235, 226, 207);
-  margin-left: 50px;
-  margin-top: 15px ; */
 }
 
 .nav{
@@ -72,6 +65,7 @@ margin-right: auto; }
   margin-left: 80px;
   margin-top: 18px;
 }
+
 .container-fluid {
   padding-right: 15px;
   padding-left: 15px;
