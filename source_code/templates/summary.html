@@ -4,27 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <title>Summary</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Resource</title>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">  
+    <!-- Our CSS -->
     <link rel="stylesheet" type="text/css" href= "../static/css/style.css">
   </head>
 
   <body>
-    <!-- Navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(66, 66, 66);">
-  <div class="container-fluid">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>                        
-    </button>
-  <a class="navbar-brand" href="/" style="font-size: 45px; margin-top: 15px ; margin-left: 50px; color: rgb(201, 143, 19);">World</a>
+<!-- Navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid navbar-custom">
+    <div class="row">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>       
+      </button>
+      <a class="navbar-brand" id="logo" href="/">World Population</a>
+      </div>
   <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav" style="font-size: 20px; margin-left: 80px; margin-top: 18px;">
+    <ul class="nav navbar-nav" id="ournav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
         <div class="dropdown-menu">
@@ -34,40 +39,53 @@
           <a class="dropdown-item" href="Wind Speed.html">wind Speed</a>
         </div>
       </li>
-      <li><a class="nav-link" href="summary">Summary</a></li>
-<li><a class="nav-link" href="Data">Data</a></li>
-<li><a class="nav-link" href="contact">Contact Us</a></li>
-<li><a class="nav-link" href="api">API</a></li>
+      <li><a class="nav-link" href="Data">Table Data</a></li>
+      <li><a class="nav-link" href="api">API Documentation</a></li>
+      <li><a class="nav-link" href="summary">Resource</a></li>
+      <li><a class="nav-link" href="contact">Our Team</a></li>
     </ul>
+  </div>
+  </div>
   </div>
 </nav>
 <!-- End Navbar -->
 
-      <div class="container-fluid bg-3 text-center">
-        <div class="container"> 
-          <h3 style="margin-top: 90px;">Data Summary</h3><br>
-          <hr style="height:2px;border-width:0;background-color:rgb(238, 234, 234)">
-      <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-jg-10">
-          <div class="thumbnail" style="background-color:rgb(112, 97, 97);opacity: 0.6; height: 800px; padding: 25px;">
-          <p style="color: rgb(240, 240, 240); padding: 25px; font-size: 20px; line-height: 40px;">You’ve probably heard of Lorem Ipsum before – it’s the most-used dummy text excerpt out there. People use it because it has a fairly normal distribution of letters and words (making it look like normal English), but it’s also Latin, which means your average reader won’t get distracted by trying to read it. It’s perfect for showcasing design work as it should look when fleshed out with text, because it allows viewers to focus on the design work itself, instead of the text. It’s also a great way to showcase the functionality of programs like word processors, font types, and more.
-      
-              We’ve taken Lorem Ipsum to the next level with our HTML-Ipsum tool. As you can see, this Lorem Ipsum is tailor-made for websites and other online projects that are based in HTML. Most web design projects use Lorem Ipsum excerpts to begin with, but you always have to spend an annoying extra minute or two formatting it properly for the web.
-              
-              Maybe you have a custom-styled ordered list you want to show off, or maybe you just want a long chunk of Lorem Ipsum that’s already wrapped in paragraph tags. No matter the need, we’ve put together a number of Lorem Ipsum samples ready to go with HTML tags and formatting in place. All you have to do is click the heading of any section on this page, and that HTML-Ipsum block is copied to your clipboard and ready to be loaded into a website redesign template, brand new design mockup, or any other digital project you might need dummy text for.
-              
-              No matter the project, please remember to replace your fancy HTML-Ipsum with real content before you go live - this is especially important if you're planning to implement a content-based marketing strategy for your new creation! Lorem Ipsum text is all well and good to demonstrate a design or project, but if you set a website loose on the Internet without replacing dummy text with relevant, high quality content, you’ll run into all sorts of potential Search Engine Optimization issues like thin content, duplicate content, and more.</p>
-            </div>
-      </div>
-      <div class="col-md-1">
-      </div>
-      </div>
-      </div>
-      </div>
-      <footer class="container-fluid text-center navbar-fixed-bottom" style="height: 4px;">
-        <p>Copyright © 2021 UWA Bootcamps. All rights reserved.</p>
-      </footer>
-  </body>
+<div class="container-fluid bg-3">
+  <div class="container"> 
+    <h3 id="sumpar">Summary</h3><br>
+    <hr>
+    <p id="sumintro">Among many environmental issues, population growth is of paramount importance because this factor has a great physical impact on its regional and global environment.
+    This website aims to investigate this major factor and present the result by statistical visualisation.</p>
+    <h3 id="sumpar">Data</h3><br>
+    <hr>
+    <p id="sumintro">The analysis is based on the 10 most populated Countries and cities for an 8-year period, and predicts their populations in 2030 and 2050. In addition, the growth rate and population ratio are studied in this project.</p>
+    <p id="sumintro" style="margin-top: 30px;"> Generally, in this analysis an attempt has been made to answer the following questions:</p>
+    <ol id="sumlist">
+      <li>What are the 10 countries with the largest population?</li>
+      <li>What is the percentage of the top 10 countries compared to the rest of the world?</li>       
+      <li>Are the top 10 cities located in the top 10 countries?</li>       
+      <li>Change in population from 2019 to 2020?</li>
+    </ol>
+    <h3 id="sumpar">Dataset</h3><br>
+    <hr>
+    <p id="sumintro">For this purpose we scraped our dataset from <a href="https://worldpopulationreview.com">https://worldpopulationreview.com</a></p>
+    <h3 id="sumpar">Process</h3><br>
+    <hr>
+    <p id="sumintro">We tried to follow all the requirements included in the instructions.</p>
+    <img src="../static/images/web_diagram.png" height="400px" width="1000px">
+    <p id="sumintro" style="margin-top: 50px;">First, we scraped data from a valid website. Then, cleaned the dataset (ELT) and created a flask python for other users's convenience. 
+    Using JavaScript for creating the map and plots and finally, presented the data on dashboard by using html and css.</p>
+    <h3 id="sumpar">Tools</h3>
+    <hr>
+    <p id="sumintro">The following tools have been used in this project:</p>
+    <ul id="sumlist" style="margin-bottom: 200px;">
+      <li>Scrape data/ELT: Python, Pandas</li>
+      <li>Database/ELT: MongoDB</li>
+      <li>API: Flask</li>
+      <li>Visualisation: Javascript (D3, Plotly, Leaflet, jSuites)</li>    
+      <li>HTML/CSS: BootStrap</li>
+    </ul>    
+  </div>
+</div>
+</body>
 </html>
