@@ -1,61 +1,33 @@
 // Function to plot line graph of country's population over time
-function displayLineGraph (populationData, countryName) {
+function displayLineGraph(populationData, countryName) {
 
 
-        // Filter metadata set to return only sample data for matching ID and subjectID function parameter
-        // i.e. Only returns metadata for the desired subject
-        let countryPopulation = PopulationData.filter(Country == countryName);
+        // Filter populationData to return only data for matching country name
+        // i.e. Only returns data for the desired country for line graph
+        let countryPopulation = populationData.filter(country => country.Country == countryName);
 
-        // Display metadata to console for checking
-        // Using an index of 0 as subject_samples is an array of length 1
-        console.log("From filter");
+        // Display population data to console for checking
+        // Should be array of length 1
         console.log(countryPopulation);
 
-        // // BAR CHART
-        // // Retrieve Top 10 sample values 
-        // // Already sorted in JSON data so can use .slice for values
-        // let sampleValuesTop10 = subject_samples[0].sample_values.slice(0,10);
+        populationYears = Object.keys(countryPopulation[0]);
+        populationAmounts = Object.values(countryPopulation[0]);
+        let lineData = {
+            x: populationYears.slice(0,12).map(i => Number(i)),
+            y: populationAmounts.slice(0,12),
+            type: "scatter",
+            mode: "lines+markers"
+        };
+        console.log(populationYears.slice(0,12).map(i => Number(i)));
+        console.log(populationAmounts.slice(0,12));
 
-        // // Display sample values to console for checking
-        // console.log(sampleValuesTop10);
-
-        // // Retrieve otu IDs for Top 10 sample values
-        // let otuIDsTop10 = subject_samples[0].otu_ids.slice(0,10);
-
-        // // Display otu IDs to console for checking
-        // console.log(otuIDsTop10);
-
-        // // Convert otu IDs to array of strings with value "OTU {otuID}"
-        // // To provide clearer display in bar chart
-        // let otuIDsList = otuIDsTop10.map(otuID => `OTU ${otuID}`)
-
-        // // Display strings to console for checking
-        // console.log(otuIDsList);
-
-        // // Retrieve otu labels for use in hovertext of bar chart
-        // let otuLabelsTop10 = subject_samples[0].otu_labels.slice(0,10);
-
-        // // Display labels to console for checking
-        // console.log(otuLabelsTop10);
-
-        // // Set up data for horizontal bar plot
-        // // Must use reverse on arrays to display in descending order of sample values
-        // let barData = [{
-        //     type: "bar",
-        //     x: sampleValuesTop10.reverse(),
-        //     y: otuIDsList.reverse(),
-        //     type: "bar",
-        //     orientation: "h",
-        //     text: otuLabelsTop10.reverse()
-        //   }];
-          
-        // // Set title for bar chart
-        // let barLayout = {
-        //     title: "Top 10 OTU IDs by Sample Values"
-        // };
-
-        // // Use plotly to display bar chart at div ID "bar" with barData and barLayout
-        // Plotly.newPlot('bar', barData, barLayout);
+        // Set title for line graph
+        let lineLayout = {
+             title: "Population Actual and Predicted 1970 to 2050"
+        };
+        
+        // Use plotly to display bar chart at div ID "line" with lineData and lineLayout
+        Plotly.newPlot('line', lineData, lineLayout);
 }
 
 // Initialisation function
@@ -74,7 +46,7 @@ function init() {
         // Countries are in ranked order of population
         console.log(countryPopulations[0]);
 
-        displayLineGraph(countryPopulations, "China");
+        displayLineGraph(countryPopulations, "United States");
         
         // Select the ID of the dropdown menu
         // let dropdownMenu = d3.select("#selDataset");
