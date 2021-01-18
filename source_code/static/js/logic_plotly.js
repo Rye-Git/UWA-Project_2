@@ -1,34 +1,112 @@
-// Function to plot line graph of country's population over time
 function displayLineGraph(populationData, countryName) {
 
+    // Filter populationData to return only data for matching country name
+    // i.e. Only returns data for the desired country for line graph
+    let countryPopulation = populationData.filter(country => country.Country == countryName);
 
-        // Filter populationData to return only data for matching country name
-        // i.e. Only returns data for the desired country for line graph
-        let countryPopulation = populationData.filter(country => country.Country == countryName);
+    // Display population data to console for checking
+    // Should be array of length 1
+    console.log(countryPopulation);
 
-        // Display population data to console for checking
-        // Should be array of length 1
-        console.log(countryPopulation);
+    populationYears = Object.keys(countryPopulation[0]);
+    populationAmounts = Object.values(countryPopulation[0]);
+    let lineData_actual = {
+        x: populationYears.slice(0,10).map(i => Number(i)),
+        y: populationAmounts.slice(0,10),
+        name: "Actual",
+        type: "scatter",
+        mode: "lines+markers"
+    };
+    console.log(populationYears.slice(0,10).map(i => Number(i)));
+    console.log(populationAmounts.slice(0,10));
 
-        populationYears = Object.keys(countryPopulation[0]);
-        populationAmounts = Object.values(countryPopulation[0]);
-        let lineData = {
-            x: populationYears.slice(0,12).map(i => Number(i)),
-            y: populationAmounts.slice(0,12),
-            type: "scatter",
-            mode: "lines+markers"
-        };
-        console.log(populationYears.slice(0,12).map(i => Number(i)));
-        console.log(populationAmounts.slice(0,12));
+    let lineData_predicted = {
+        x: populationYears.slice(9,12).map(i => Number(i)),
+        y: populationAmounts.slice(9,12),
+        color: "orange",
+        line: { dash: "dot", width: 4 },
+        name: "Predicted",
+        type: "scatter",
+        mode: "lines+markers"
+    };
 
-        // Set title for line graph
-        let lineLayout = {
-             title: "Population Actual and Predicted 1970 to 2050"
-        };
-        
-        // Use plotly to display bar chart at div ID "line" with lineData and lineLayout
-        Plotly.newPlot('line', lineData, lineLayout);
+    console.log(populationYears.slice(9,12).map(i => Number(i)));
+    console.log(populationAmounts.slice(9,12));
+
+    lineData = [lineData_actual, lineData_predicted];
+
+    // Set title for line graph
+    let lineLayout = {
+         title: countryName + " - Population Actual and Predicted 1970 to 2050",
+         xaxis: { title: "Years" },
+         yaxis: { title: "Population (millions)" }
+
+    };
+    
+    // Use plotly to display bar chart at div ID "line" with lineData and lineLayout
+    Plotly.newPlot('line', lineData, lineLayout);
 }
+
+// Rounding function to round number to specified number of decimal places
+// https://gist.github.com/djD-REK/2e347f5532bb22310daf450f03ec6ad8
+const roundOne = (n, d) => Math.round(n * Math.pow(10, d)) / Math.pow(10, d)
+
+// Function to display pie chart of Top 10 countries and their percentage of the
+// world population, with ROW being the percentage of the rest of the world
+function displayPieChart(populationData) {
+
+    // Country data is in order, so the Top 10 countries by population
+    // respresents the first 10 values of populationData
+    countriesTop10 = populationData.slice(0,10);
+    
+    // Display to console for checking purposes
+    console.log(countriesTop10);
+
+    // Set up empty lists to hold percentages and countries for pie chart
+    countriesPercent = [];
+    countriesList = [];
+
+    // Loop through Top 10 countries, converting number to percentage and
+    // rounding to 2 decimal places
+    // Add this number and the country to the lists
+    for (let i=0; i<countriesTop10.length; i++) {
+
+        let countryPercent = roundOne(countriesTop10[i].WorldPercentage * 100,2);
+        countriesPercent.push(countryPercent);
+        countriesList.push(countriesTop10[i].Country);
+
+    }
+
+    // Calculate the percentage of the world population for the rest of the world's countries
+    // Rounded to 2 decimal places
+    rowPercent = roundOne(100 - (countriesPercent.reduce((a, b) => a + b)),2);
+
+    // Add the ROW to the lists
+    countriesPercent.push(rowPercent);
+    countriesList.push("Rest of World");
+
+    // Display lists to console for checking purposes
+    console.log(countriesPercent);
+    console.log(countriesList);
+
+    // Set up data for pie chart, with the values being the percentages
+    // and the countries the labels
+    var pieData = [{
+        values: countriesPercent,
+        labels: countriesList,
+        type: 'pie'
+      }];
+      
+      // Give pie chart a title
+      var pieLayout = {
+        title: "Percentage of World Population - Top 10 Countries and ROW"
+      };
+      
+      // Use plotly to display pie chart div ID "pie" with pieData and pieLayout
+      Plotly.newPlot('pie', pieData, pieLayout);
+
+}
+
 
 // Initialisation function
 function init() {
@@ -47,7 +125,8 @@ function init() {
         console.log(countryPopulations[0]);
 
         displayLineGraph(countryPopulations, "United States");
-        
+        displayPieChart(countryPopulations);
+
         // Select the ID of the dropdown menu
         // let dropdownMenu = d3.select("#selDataset");
 
