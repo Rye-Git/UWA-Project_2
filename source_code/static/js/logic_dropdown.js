@@ -1,6 +1,6 @@
 
 let url = "/api/population/countries";
-d3.json(url, function(response){
+d3.json(url).then(function(response){
     window.country_list = [];
     let data = response[0]["data"];
     for (let i=0; i<data.length; i++) {
@@ -14,6 +14,6 @@ d3.json(url, function(response){
         autocomplete: true,
         lazyLoading: true,
         multiple: false,
-        width: '100px',
+        width: '200px',
 });
 });
