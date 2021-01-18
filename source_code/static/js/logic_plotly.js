@@ -119,7 +119,7 @@ function init() {
     d3.json(countriesURL).then(function(data) {
     
         // Assign the population data for all countries to variable countryPopulations
-        countryPopulations = data[0]["data"];
+        countryPopulations = data[0].data;
 
         // Display first country's to console for checking
         // Countries are in ranked order of population
