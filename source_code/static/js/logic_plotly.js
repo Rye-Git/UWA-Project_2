@@ -94,6 +94,7 @@ function displayPieChart(populationData) {
     var pieData = [{
         values: countriesPercent,
         labels: countriesList,
+        hoverinfo: 'label+percent',
         type: 'pie'
       }];
       
