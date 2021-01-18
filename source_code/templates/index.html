@@ -5,15 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Population World</title>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">    
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">  
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
-  integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-  crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
   <!-- Jsuits library for Dropdown -->
   <link rel="stylesheet" href="https://jsuites.net/v3/jsuites.css" type="text/css" />
   <!-- Our CSS -->
@@ -24,16 +22,20 @@
 
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(66, 66, 66);">
-  <div class="container-fluid">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>                        
-    </button>
-  <a class="navbar-brand" href="/" style="font-size: 45px; margin-top: 15px ; margin-left: 50px; color: rgb(201, 143, 19);">World Population</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid navbar-custom">
+    <div class="row">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>       
+      </button>
+      <a class="navbar-brand" id="logo" href="/">World Population</a>
+      </div>
   <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav" style="font-size: 20px; margin-left: 80px; margin-top: 18px;">
+    <ul class="nav navbar-nav" id="ournav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
         <div class="dropdown-menu">
@@ -43,11 +45,13 @@
           <a class="dropdown-item" href="Wind Speed.html">wind Speed</a>
         </div>
       </li>
-<li><a class="nav-link" href="Data">Table Data</a></li>
-<li><a class="nav-link" href="api">API Documentation</a></li>
-<li><a class="nav-link" href="summary">Resource</a></li>
-<li><a class="nav-link" href="contact">Our Team</a></li>
+      <li><a class="nav-link" href="Data">Table Data</a></li>
+      <li><a class="nav-link" href="api">API Documentation</a></li>
+      <li><a class="nav-link" href="summary">Resource</a></li>
+      <li><a class="nav-link" href="contact">Our Team</a></li>
     </ul>
+  </div>
+  </div>
   </div>
 </nav>
 <!-- End Navbar -->
@@ -56,7 +60,7 @@
 <div class="container-fluid bg-3 text-center" style="margin-top: 100px ;">  
   <div class="container">   
     <h3 class="text-center">World Population at a Glance</h3><br>
-    <hr style="height:4px;border-width:0;background-color:rgb(238, 234, 234)">
+    <hr style="height:3px;border-width:0;background-color:rgba(184, 174, 196, 0.911)">
     <div class="row">
       <div class="thumbnail" style="background-color:rgb(110, 101, 84); height: 560px; width: 1210px;margin-left: auto;margin-right: auto;">
       <!-- The div that holds our map -->
@@ -72,7 +76,7 @@
   <div class="container-fluid bg-3 text-center"> 
     <div class="container">    
         <h3 class="text-center" style="margin-top: 90px;">Data Analysis</h3><br>
-        <hr style="height:4px;border-width:0;background-color:rgb(238, 234, 234)">
+        <hr style="height:3px;border-width:0;background-color:rgba(184, 174, 196, 0.911)">
         <div class="row">
         <div class="col-sm-2">
         <h4 class='page-header'>Select a country</h4>
@@ -105,30 +109,20 @@
       </div>
     </div>
   </div>
-    </div>
+  </div>
   </div><br><br>
   <!-- End Final Plots -->
 
-
 <!-- Leaflet JavaScript -->
-<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
-  integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
-  crossorigin=""></script>
-
+<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
 <!-- D3 JavaScript -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
-
  <!-- API key -->
- <script src="../static/js/config.js"></script>
-
- <!-- Jsuits library for Dropdown -->
- <script src="https://jsuites.net/v3/jsuites.js"></script>
-
+<script src="../static/js/config.js"></script>
+<!-- Jsuits library for Dropdown -->
+<script src="https://jsuites.net/v3/jsuites.js"></script>
 <!-- Our JavaScript -->
 <script src="../static/js/logic_map.js"></script>
 <script type="text/javascript" src="../static/js/logic_dropdown.js"></script>
-<footer class="container-fluid text-center" style="height: 4px; margin-top: 25px;">
-  <p>Copyright © 2021 UWA Bootcamps. All rights reserved.</p>
-</footer>
 </body>
 </html>

@@ -9,18 +9,9 @@ body {
   padding-top: 70px;
 }
 
-/* #map { */
-  /* width: 60%; */
-  /* height: 100%; */
-  /* min-width: 700px;
-  min-height: 500px; */
-  /* margin-left: 160px; */
-/* } */
-
-
 h3 {
   font-size: 50px;
-  color: rgb(119, 106, 83);
+  color: rgb(185, 134, 24);
 }
 
 h4 {
@@ -31,6 +22,45 @@ h4 {
 h5 {
   font-size: 15px;
   color: #f1e4d7;
+}
+
+hr {
+  height:3px;
+  border-width:0;
+  background-color:rgba(184, 174, 196, 0.911);
+}
+
+#sumpar {
+  margin-top: 100px;
+  font-size: 40px;
+  color:rgb(185, 134, 24);
+}
+
+#sumintro {
+  line-height: 40px;
+  font-size: 20px;
+  color: rgb(95, 83, 68);
+}
+
+#sumlist {
+  font-size: 20px;
+  line-height: 40px;
+  margin-left: 30px;
+  color: rgb(95, 83, 68);
+}
+
+#team-par-head{
+  color: rgb(143, 114, 21);
+  font-size: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+#team-par{
+  color: rgb(143, 114, 21);
+  font-size: 20px;
+  margin-top: 30px;
+  margin-left: 50px;
 }
 
 #map {
@@ -60,10 +90,21 @@ margin-right: auto; }
   height: 100px;
 }
 
-.nav{
+#logo {
+  font-size:55px;
+  margin-left: 50px;
+  margin-top: 15px;
+  color:rgb(201, 143, 19);
+}
+
+#ournav {
   font-size:20px;
   margin-left: 80px;
   margin-top: 18px;
+}
+
+.nav-link{
+  font-size:23px;
 }
 
 .container-fluid {
@@ -133,7 +174,7 @@ footer {
 }
 
 
-@media (max-width: 950px) {
+@media (max-width: 900px) {
   .navbar {  
     padding: inherit;
   } 
@@ -146,11 +187,16 @@ footer {
     margin-right: 60px;
   }
 
+  .navbar-brand {
+    padding: 10px;
+  }
+
   .navbar-toggler {
     color: #575555;
   }
 }
-.thumbnail .container{
-    width: 900px;
-    margin: 0 auto;
+
+.container{
+  width: 1024px;
+  margin: 0 auto;
 }
