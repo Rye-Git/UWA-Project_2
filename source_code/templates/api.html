@@ -16,16 +16,20 @@
 
 <body style="margin-left:15%;">
 <!-- Navbar -->
-<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: rgb(66, 66, 66);">
-  <div class="container-fluid">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>                        
-    </button>
-  <a class="navbar-brand" href="/" style="font-size: 45px; margin-top: 15px ; margin-left: 50px; color: rgb(201, 143, 19);">World Population</a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid navbar-custom">
+    <div class="row">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <span class="sr-only">Toggle Navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>       
+      </button>
+      <a class="navbar-brand" id="logo" href="/">World Population</a>
+      </div>
   <div class="collapse navbar-collapse" id="myNavbar">
-    <ul class="nav navbar-nav" style="font-size: 20px; margin-left: 80px; margin-top: 18px;">
+    <ul class="nav navbar-nav" id="ournav">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Plots</a>
         <div class="dropdown-menu">
@@ -35,11 +39,13 @@
           <a class="dropdown-item" href="Wind Speed.html">wind Speed</a>
         </div>
       </li>
-<li><a class="nav-link" href="Data">Table Data</a></li>
-<li><a class="nav-link" href="api">API Documentation</a></li>
-<li><a class="nav-link" href="summary">Resource</a></li>
-<li><a class="nav-link" href="contact">Our Team</a></li>
+      <li><a class="nav-link" href="Data">Table Data</a></li>
+      <li><a class="nav-link" href="api">API Documentation</a></li>
+      <li><a class="nav-link" href="summary">Resource</a></li>
+      <li><a class="nav-link" href="contact">Our Team</a></li>
     </ul>
+  </div>
+  </div>
   </div>
 </nav>
 <!-- End Navbar -->
@@ -68,7 +74,7 @@
             <ul>
                 <hr>
                 <li>
-                  <a href="api/population/world">World Population</a>
+                  <a href="api/population/world">World Population Actuals and Projections</a>
                   <p>Route:  /api/population/world</p>
                   <p>Returns the World population data.</p>
                   <h4>Example Output</h4>
@@ -133,8 +139,5 @@
         </div>
     </div>
   </div>
-  <footer class="container-fluid text-center" style="height: 4px; margin-top: 25px;">
-    <p>Copyright © 2021 UWA Bootcamps. All rights reserved.</p>
-  </footer>
   </body>
 </html>
