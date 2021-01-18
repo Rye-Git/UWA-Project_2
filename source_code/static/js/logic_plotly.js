@@ -120,6 +120,31 @@ function displayPieChart(populationData) {
 
 }
 
+// Call function to update displays of demographic information panel and plots
+// when the dropdown menu selection is changed
+d3.selectAll("dropdown").on("change", optionChanged);
+
+// Function to display demographic information panel and plots from dropdown menu selection
+function optionChanged() {
+
+    // Assign dropdown menu to variable using D3 and ID for menu given in HTML
+    let dropdownMenu = d3.select("#dropdown");
+
+    // Assign the value of the country dropdown menu option to a variable
+    let country = dropdownMenu.property("value");
+    
+    // Select the ID of the dropdown country menu
+    console.log("Dropdown country value: ");
+    console.log(dropdownMenu.property("value"));
+
+    // Display the demographic information panel for the desired subject
+    // displayDemoInfo(subject);
+    // displayPlots(subject);
+    displayLineGraph(countryPopulations, country);
+}
+
+var countryPopulations;
+
 // Initialisation function
 function init() {
 
@@ -136,11 +161,8 @@ function init() {
         // Countries are in ranked order of population
         console.log(countryPopulations[0]);
 
-        displayLineGraph(countryPopulations, "United States");
-        displayPieChart(countryPopulations);
-
-        // Select the ID of the dropdown menu
-        // let dropdownMenu = d3.select("#selDataset");
+        displayLineGraph(countryPopulations, "Australia");
+        // displayPieChart(countryPopulations);
 
         // Populate the dropdown list with the names/IDs of the subjects
         // Set with HTML tag <option>, attribute of the name/ID and text display of the name/ID
