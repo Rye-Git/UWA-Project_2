@@ -88,9 +88,9 @@ let geoDataURL = "static/data/countries.geojson";
     // Add the layer control to the map
     L.control.layers(baseMaps, overlayMaps).addTo(myMap);
     function getColor(d) {
-      return d > 150000000 ? '#034E7B' :
-             d > 100000000  ? '#0570B0' :
-             d > 15000000  ? '#3690C0' :
+      return d > 100000000 ? '#034E7B' :
+             d > 30000000  ? '#0570B0' :
+             d > 20000000  ? '#3690C0' :
              d > 10000000  ? '#74A9CF' :
              d > 1000000   ? '#A6BDDB' :
              d > 100000  ? '#D0D1E6' :
@@ -149,22 +149,22 @@ let geoDataURL = "static/data/countries.geojson";
     var geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
       info.addTo(myMap);
     cityLayer.addTo(myMap);
-      // var legend = L.control({position: 'bottomright'});
-      // legend.onAdd = function (myMap) {
-      //     var div = L.DomUtil.create('div', 'info legend'),
-      //         mhis = [0, 10000, 100000, 1000000, 1000000, 15000000, 100000000, 150000000],
-      //         labels = [],
-      //         from, to;
-      //     for (var i = 0; i < mhis.length; i++) {
-      //         from = mhis[i];
-      //         to = mhis[i + 1];
-      //         labels.push(
-      //             '<i style="background:' + getColor(from + 1) + '"></i> ' +
-      //             from + (to ? '&ndash;' + to : '+'));
-      //     }
-      //     div.innerHTML = labels.join('<br>');
-      //     return div;
-      // };
-      // legend.addTo(myMap);  
+      var legend = L.control({position: 'bottomright'});
+      legend.onAdd = function (myMap) {
+          var div = L.DomUtil.create('div', 'info legend'),
+              mhis = [0, 10000, 100000, 1000000, 1000000, 15000000, "300M", "1B"],
+              labels = [],
+              from, to;
+          for (var i = 0; i < mhis.length; i++) {
+              from = mhis[i];
+              to = mhis[i + 1];
+              labels.push(
+                  '<i style="background:' + getColor(from + 1) + '"></i> ' +
+                  from + (to ? '&ndash;' + to : '+'));
+          }
+          div.innerHTML = labels.join('<br>');
+          return div;
+      };
+      legend.addTo(myMap);  
   });
 });
