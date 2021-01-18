@@ -137,12 +137,12 @@ function optionChanged() {
     console.log("Dropdown country value: ");
     console.log(dropdownMenu.property("value"));
 
-    // Display the demographic information panel for the desired subject
-    // displayDemoInfo(subject);
-    // displayPlots(subject);
+    // Display the graphs for the desired country
     displayLineGraph(countryPopulations, country);
 }
 
+// Variable to get population data from JSON URL
+// Made global for ease of coding after previous development
 var countryPopulations;
 
 // Initialisation function
