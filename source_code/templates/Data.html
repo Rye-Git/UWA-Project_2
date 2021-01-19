@@ -64,7 +64,7 @@
   <div class="container">    
     <div class="row">
       <div class="col-md-12">
-        <h3 class="text-center" style="margin-top: 90px;">Population Actual and Prediction</h3><br>
+        <h3 class="text-center" style="margin-top: 150px;">Population Actual and Prediction</h3><br>
             <hr>
             <h4 style="text-align: center; color: rgb(78, 70, 25); font-size: 15px;"><b>The table below can be sorted by clicking on the header of a column.</b></h4> 
             <!-- <div id="aaa"></div> 
@@ -75,7 +75,7 @@
   </div>            
   
   <!-- Webix Table -->
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8" style="margin-bottom: 200px;"> 
 
     d3.json("/api/population/countries").then((dataset)=> {
     console.log(dataset[0].data)
@@ -99,15 +99,15 @@
             { id:"2020",   header:"2020",   sort:"int",  width:150},
             { id:"2030",   header:"2030",   sort:"int",  width:150},
             { id:"2050",   header:"2050",   sort:"int",  width:100},
-            ],
-        data: dataForWebix,
+            ], 
+          data: dataForWebix,
           rows:[
           { view:"template", type:"header", template:"Films" },
+          { view:"colorpicker", label:"Front color", name:"color", value:"#ffaadd" },
           { view:"datatable", autoConfig:true}
           ]
           });
           });  
     </script>
-
 </body>
 </html>
