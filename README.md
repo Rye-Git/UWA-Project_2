@@ -51,7 +51,7 @@ The top 10 countries and top 10 cities in terms of population <br>
 2.	What is the percentage of the top 10 countries compared to the rest of the world?
 3.	What are the top 10 cities with the largest population?
 4.  Is the largest populated city located in the largest populated country in the world?
-5.	Predicted population from 2019 to 2050?
+5.	Predicted population from 2020 to 2050?
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - UWA Data Science
