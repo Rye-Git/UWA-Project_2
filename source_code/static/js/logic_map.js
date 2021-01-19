@@ -1,7 +1,25 @@
+!(function (d3) {
+
+  $("acontent").empty();
+  var content = d3.select("acontent").append("div")
+                                     .attr("class", "map")
+                                     .attr("id", "map");
+                                    
+  var list_heading = d3.select("acontent").append("h4")
+                                    .text("Top 10 Countries");
+  var top_lists = d3.select("acontent").append("div")
+                                    .attr("class","list-type5")
+                                  .append("ol");
+
+
+
+// Population 2020 Map
+/////////////////////////////////////////////////////////
 let urlCity = "/api/population/cities";
 let urlPop = "/api/population/countries";
 // Load in geojson data for marking Countries
 let geoDataURL = "static/data/countries.geojson";
+
 
 
   // Grab Countries geo data with d3 from countries geojson
@@ -11,16 +29,29 @@ let geoDataURL = "static/data/countries.geojson";
     d3.json(urlPop).then(function(dataPop){
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
-      let key = "2020";
       data.features.forEach(val => {
         for( let i=0; i<popCountriesData.length; i++){
           if(val.id == popCountriesData[i]["Country_Code"]){
             let { properties } = val
-            let newProps = { key: popCountriesData[i][key] }
-            val.properties = { ...properties, ...newProps }
+            let newProps = { "2020": popCountriesData[i]["2020"], 
+                             "Density": popCountriesData[i]["Density"], 
+                             "GrowthRate": popCountriesData[i]["GrowthRate"],
+                             "rank": popCountriesData[i]["rank"]
+                           }
+            val.properties = { ...properties, ...newProps }            
           }  
         }
       })
+
+      // creating a list of Top 10 Countries in population
+      popCountriesData.sort(function(a, b) {
+        return a.rank - b.rank;
+      }); // Sort by rank (ascending)
+      for(let i =0; i<10; i++){
+        top_lists.append("li")
+              .text(popCountriesData[i]["Country"] + " , Population: " + formatNumber(popCountriesData[i]["2020"]));
+      }
+
     });
 
 
@@ -38,7 +69,7 @@ let geoDataURL = "static/data/countries.geojson";
       let population = cities[i]["2020"];
       // create a new marker, push it to the cityMarkers array
       cityMarkers.push(
-        L.marker(coordinates).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h5>Population: " + population + "</h5>")
+        L.marker(coordinates).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")
       );
       cityCircleMarkers.push(
         L.circle(coordinates, {
@@ -46,7 +77,7 @@ let geoDataURL = "static/data/countries.geojson";
           color: "black",
           fillColor: "black",
           radius: population/50
-      }).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h5>Population: " + population + "</h5>")); 
+      }).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")); 
     }
     // Add all the cityMarkers to a new layer group.
     var cityLayer = L.layerGroup(cityMarkers);
@@ -60,14 +91,14 @@ let geoDataURL = "static/data/countries.geojson";
     var light = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
       maxZoom: 6,
-      minZoom: 1,
+      minZoom: 2,
       id: "light-v10",
       accessToken: API_KEY
     });
     var dark = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
       maxZoom: 6,
-      minZoom: 1,
+      minZoom: 2,
       id: "dark-v10",
       accessToken: API_KEY
     });
@@ -78,7 +109,7 @@ let geoDataURL = "static/data/countries.geojson";
     };
     // Overlays that may be toggled on or off
     var overlayMaps = {
-      Cities: cityLayer
+      "Top Cities": cityLayer
     };
       // Creating map object
     var myMap = L.map("map", {
@@ -105,7 +136,7 @@ let geoDataURL = "static/data/countries.geojson";
     }
     function style(feature) {
       return {
-          fillColor: getColor(feature.properties.key),
+          fillColor: getColor(feature.properties["2020"]),
           weight: 2,
           opacity: 1,
           color: 'white',
@@ -122,7 +153,8 @@ let geoDataURL = "static/data/countries.geojson";
     };
     info.update = function (props) {
       this._div.innerHTML = '<h4>2020 Population</h4>' +  (props ?
-              '<b> Country:' + props.name + '</b><br /> Population:' + props.key + '</sup>'
+              '<b> Country:' + props.name + '</b><br>Population:' + formatNumber(props["2020"]) + '<br>Density:' + props.Density + 
+              '<br>Growth rate:' + props.GrowthRate + '<br>Rank:' + props.rank + '<br>'
               : 'Hover over a Country');
     };
     function highlightFeature(e) {
@@ -156,19 +188,19 @@ let geoDataURL = "static/data/countries.geojson";
           });
     }
     geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
-      info.addTo(myMap);
+    info.addTo(myMap);
     
-      var  show = ["< 10,000","10,000+", "100,000+", "1M+", "10M+","100M+","200M +","1B +"];
+      var  show = ["< 10,000","10,000 +", "100,000 +", "1M +", "10M +","100M +","200M +","1B +"];
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = function (myMap) {
           var div = L.DomUtil.create('div', 'info legend'),
-              mhis = [0, 10000, 100000, 1000000, 10000000, 100000000, 200000000, 1000000000],
+              popul = [0, 10000, 100000, 1000000, 10000000, 100000000, 200000000, 1000000000],
               labels = [],
               from, to;
-          for (var i = 0; i < mhis.length; i++) {
-              from = mhis[i];
+          for (var i = 0; i < popul.length; i++) {
+              from = popul[i];
 
-              to = mhis[i + 1];
+              to = popul[i + 1];
               labels.push(
                   '<i style="background:' + getColor(from + 1) + '"></i> ' +
                   show[i] ); // + (to ? '&ndash;' + to : '+')
@@ -179,4 +211,7 @@ let geoDataURL = "static/data/countries.geojson";
       legend.addTo(myMap);  
       
   });
+
 });
+
+})(d3);
