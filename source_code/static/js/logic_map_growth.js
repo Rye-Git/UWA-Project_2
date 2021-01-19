@@ -1,10 +1,9 @@
-  !(function (d3) {
+!(function (d3) {
 
-    $("bcontent").empty();
-    var content = d3.select("bcontent").append("div")
+    $("ccontent").empty();
+    var content = d3.select("ccontent").append("div")
                     .attr("class", "map")
-                    .attr("id", "map_density");
-    console.log("btab_2");
+                    .attr("id", "map_growth");
     // let urlCity = "/api/population/cities";
     // let urlPop = "/api/population/countries";
     // // Load in geojson data for marking Countries
@@ -34,7 +33,7 @@
       //   });
 
         // Creating map object
-        var map_density = L.map("map_density", {
+        var map_growth = L.map("map_growth", {
           center: [34.0522, 10.2437],
           zoom: 2
         });
@@ -44,9 +43,9 @@
           attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
           maxZoom: 6,
           minZoom: 2,
-          id: "mapbox/streets-v11",
+          id: "dark-v10",
           accessToken: API_KEY
-        }).addTo(map_density);
+        }).addTo(map_growth);
         
 
         // function getColor(d) {

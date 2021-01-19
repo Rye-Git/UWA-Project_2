@@ -1,5 +1,7 @@
 body {
-  background-image: radial-gradient( rgb(235, 230, 213),  rgb(224, 218, 193),  rgb(209, 200, 168));
+  background-image: url(../images/cool-background.jpg);
+  background-repeat: repeat;
+  background-position: center;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
@@ -61,11 +63,13 @@ hr {
   margin-left: 50px;
 }
 
-#map {
-  width: 1200px;
-  height: 550px;
-margin-left: auto;
-margin-right: auto; }
+.map {
+  width: 100%;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto; 
+  margin-bottom: 50px;
+}
 
 .box {
   height: 400px;
@@ -172,6 +176,7 @@ footer {
 }
 
 
+
 @media (max-width: 900px) {
   .navbar {  
     padding: inherit;
@@ -195,6 +200,63 @@ footer {
 }
 
 .container{
-  width: 1024px;
+  /* width: 1024px; */
+  height: fit-content;
+  min-height: 600px;
   margin: 0 auto;
 }
+
+
+
+
+/* Top 10 List */
+.list-type5{
+  width:600px;
+  margin:0 auto;
+  }
+  .list-type5 ol {
+  list-style-type: none;
+  /* list-style-type: decimal !ie; IE 7- hack */
+  margin: 0;
+  margin-left: 1em;
+  padding: 0;
+  counter-reset: li-counter;
+  }
+  .list-type5 ol li{
+  position: relative;
+  margin-bottom: 1.5em;
+  padding: 0.5em;
+  background-color: #e9b482;
+  font-size: 16px;
+  padding-left: 58px;
+  }
+  
+  .list-type5 li:hover{
+  box-shadow:inset -1em 0 #6CD6CC;
+  -webkit-transition: box-shadow 0.5s; /* For Safari 3.1 to 6.0 */
+  transition: box-shadow 0.5s;
+  }
+  
+  .list-type5 ol li:before {
+  position: absolute;
+  top: -0.3em;
+  left: -0.5em;
+  width: 1.8em;
+  height: 1.2em;
+  font-size: 2em;
+  line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  background-color: #6CD6CC;
+  transform: rotate(-20deg);
+  -ms-transform: rotate(-20deg);
+  -webkit-transform: rotate(-20deg);
+  z-index: 99;
+  overflow: hidden;
+  content: counter(li-counter);
+  counter-increment: li-counter;
+  }
+
+
+
