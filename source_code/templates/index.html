@@ -48,8 +48,8 @@
       <li><a class="nav-link" href="countries-population">Countries</a></li>
       <li><a class="nav-link" href="Data">Table Data</a></li>
       <li><a class="nav-link" href="api">API Documentation</a></li>
-      <li><a class="nav-link" href="summary">Resources</a></li>
-      <li><a class="nav-link" href="contact">Meet the Team</a></li>
+      <li><a class="nav-link" href="summary">Resource</a></li>
+      <li><a class="nav-link" href="contact">Our Team</a></li>
     </ul>
   </div>
   </div>
@@ -58,59 +58,88 @@
 <!-- End Navbar -->
 
 <!-- World Map -->
+<div class="container-fluid bg-3 text-center" style="margin-top: 100px ;">  
   <div class="container">   
-    <h3 class="text-center" style="margin-top: 90px;">World Population at a Glance</h3><br>
+    <h3 class="text-center">World Population at a Glance</h3><br>
+    <hr style="height:3px;border-width:0;background-color:rgba(184, 174, 196, 0.911)">
     <div class="row">
       <div class="thumbnail" style="background-color:rgb(110, 101, 84); height: 560px; width: 1210px;margin-left: auto;margin-right: auto;">
       <!-- The div that holds our map -->
-      <div id="map"></div>
+      <div class="col-md-12 center" id="map"></div>
     </div>
   </div>
+  </div>
   </div><br>
-      <div class="row" style="margin-top: 30px;">
-      <div class="col-md-3"></div>
-      <div class="col-md-3"><a href="https://www.w3schools.com/" style="font-size: 30px;">Population Density</a></div> 
-      <div class="col-md-3"><a href="https://www.w3schools.com/" style="font-size: 30px;">Birth Rate</a></div> 
-      <div class="col-md-3"><a href="https://www.w3schools.com/" style="font-size: 30px;">Death Rate</a></div> 
-      </div> 
+  
 <!-- End World Map -->
 
   <!-- Data Analysis -->
-  <h3 class="text-center" style="margin-top: 90px;">Data Analysis</h3><br>
-  <hr style="height:3px;border-width:0;background-color:rgba(184, 174, 196, 0.911)">
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-2" style="margin-bottom: 80px;">
-    <h4 class='page-header'>Select a country</h4>
-    <div id="dropdown"></div>    
-  </div>
-  </div>
-  <div class="row" style="margin-left: 20px; margin-bottom: 200px;">
-    <div class="col-md-2"></div>
-  <div class="col-md-4">  
-  <div id="line"></div>
-  </div>
-  <div class="col-md-4">
-  <div id="pie"></div>   
-  </div> 
-  <div class="col-md-2"></div> 
-  </div>   
+  <div class="container-fluid bg-3 text-center"> 
+    <div class="container">    
+        <h3 class="text-center" style="margin-top: 90px;">Data Analysis</h3><br>
+        <hr style="height:3px;border-width:0;background-color:rgba(184, 174, 196, 0.911)">
+        <div class="row">
+        <div class="col-sm-2">
+        <h4 class='page-header'>Select a country</h4>
+        <div id="dropdown"></div>                
   <!-- End Data Analysis -->
+
+  <!-- Final Plots -->
+  <div class="container-fluid bg-3 text-center">  
+    <div class="container">   
+    <div class="row">
+      <div class="col-sm-4">
+        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.05.png" width="400" height="500" alt="Image">
+        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+        </div>  
+    </div>
+      <div class="col-sm-4"> 
+        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.54.png"  width="400" height="500" alt="Image">
+        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+        </div>  
+    </div>
+      <div class="col-sm-4"> 
+        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
+        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
+        <img src="../static/images/Screen Shot 2021-01-12 at 20.22.39.png" width="400" height="500" alt="Image">
+        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
+      </div>
+    </div>
+  </div>
+    </div>
+  </div>
+  <div id="line"></div>
+  <div id="pie"></div>
   
+  
+  
+  <br><br>
+    
+  <!-- End Final Plots -->
 
 <!-- Leaflet JavaScript -->
 <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
 <!-- D3 JavaScript -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<!-- API key -->
-<script src="../static/js/config.js"></script>
-<!-- Jsuits library for Dropdown -->
-<script src="https://jsuites.net/v3/jsuites.js"></script>
+ <!-- API key -->
+ <script src="../static/js/config.js"></script>
+
+ <!-- Jsuits library for Dropdown -->
+ <script src="https://jsuites.net/v3/jsuites.js"></script>
+
 <!-- Plotly JavaScript -->
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>    
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      
 <!-- Our JavaScript -->
-<script src="../static/js/logic_map.js"></script>
+
+<!-- <script src="../static/js/logic_map.js"></script> -->
+<script src="../static/js/logic_map_density.js"></script>
 <script src="../static/js/logic_plotly.js"></script>
 <script type="text/javascript" src="../static/js/logic_dropdown.js"></script>
+<script type="text/javascript" src="../static/js/logic_table.js"></script>
 </body>
 </html>
