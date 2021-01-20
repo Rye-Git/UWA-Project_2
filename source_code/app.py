@@ -75,7 +75,7 @@ def sexRatio():
 # html pages
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index_copy.html')
 
 @app.route('/countries-population')
 def countriesPopulation():
