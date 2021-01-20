@@ -177,41 +177,12 @@ footer {
 
 
 
-@media (max-width: 900px) {
-  .navbar {  
-    padding: inherit;
-  } 
-
-  .nav-link{
-    font-size:13px;
-  }
-  
-  .navbar div {  
-    background-color: rgb(66, 66, 66);
-  }
-
-  #logo {
-    font-size:35px;
-  }
-  button{
-    margin-right: 60px;
-  }
-
-  .navbar-brand {
-    padding: 10px;
-  }
-
-  .navbar-toggler {
-    color: #575555;
-  }
-}
-
-.container{
+/* .container{ */
   /* width: 1024px; */
-  height: fit-content;
+  /* height: fit-content;
   min-height: 600px;
   margin: 0 auto;
-}
+} */
 
 
 
@@ -264,6 +235,65 @@ footer {
   content: counter(li-counter);
   counter-increment: li-counter;
   }
+
+  #api_page {
+    margin-left: 10%;
+    margin-top: 90px;
+  }
+
+
+
+
+  @media (max-width: 1400px) {
+
+    #ournav {
+      margin-left: 20px;
+    }
+
+    .navbar {  
+      padding: inherit;
+    } 
+  
+    .nav-link{
+      font-size:16px;
+    }
+    
+    .navbar div {  
+      background-color: rgb(66, 66, 66);
+    }
+  
+    #logo {
+      font-size:40px;
+    }
+
+    button{
+      margin-right: 60px;
+    }
+  
+    .navbar-brand {
+      padding: 10px 5px 10px 5px;
+    }
+
+
+  }
+
+  @media (max-width: 1040px) {
+    #ournav {
+      margin-left: 10px;
+    }
+
+    #logo {
+      font-size: 28px;
+      padding-right: 0;
+      margin-left: 2px;
+    }
+
+    .nav-link{
+      font-size:14px;
+    }
+  }
+
+
 
 
 

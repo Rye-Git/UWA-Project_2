@@ -97,5 +97,9 @@ def Data():
 def api():
     return render_template('api.html') 
 
+@app.route('/header')
+def header():
+    return render_template('header.html') 
+
 if __name__ == "__main__":
     app.run(debug=True)
