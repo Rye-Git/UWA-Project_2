@@ -1,6 +1,7 @@
-let urlPop = "/api/population/countries";
+let urlPop = "/api/population/death";
 // Load in geojson data for marking Countries
 let geoDataURL = "/static/data/countries.geojson";
+
 
   // Grab Countries geo data with d3 from countries geojson
   d3.json(geoDataURL).then(function(data) {
@@ -10,7 +11,7 @@ let geoDataURL = "/static/data/countries.geojson";
       console.log(dataPop);
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
-      let key = "Density";
+      let key = "2018";
       data.features.forEach(val => {
         for( let i=0; i<popCountriesData.length; i++){
           if(val.id == popCountriesData[i]["Country_Code"]){
@@ -26,7 +27,7 @@ let geoDataURL = "/static/data/countries.geojson";
 
       // Creating map object
   var myMap = L.map("map", {
-    center: [34.0522, 20.2437],
+    center: [34.0522, 10.2437],
     zoom: 2
   });
 
@@ -42,14 +43,14 @@ let geoDataURL = "/static/data/countries.geojson";
     
 
     function getColor(d) {
-      return d > 20000 ? '#2505f5' :
-             d > 7000  ? '#1c0a91' :
-             d > 2000  ? '#42349e' :
-             d > 1000  ? '#6e5ed6' :
-             d > 500   ? '#685ea8' :
-             d > 100  ? '#8079ad' :
-             d > 0   ? '#aea7db' :
-                        '#dbd7f5';
+      return d > 15 ? '#f50202' :
+             d > 13  ? '#a11010' :
+             d > 11  ? '#701f1f' :
+             d > 9  ? '#854040' :
+             d > 6   ? '#b06363' :
+             d > 4  ? '#d18484' :
+             d > 1   ? '#ad7974' :
+                        '#d4cac9';
     }
     function style(feature) {
       return {
@@ -106,7 +107,7 @@ let geoDataURL = "/static/data/countries.geojson";
     geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
       info.addTo(myMap);
     
-      var  show = ["< 0","0+", "100+", "500+", "1000+","2000+","7000+","20000 +"];
+      var  show = ["< 1","1+", "4+", "6+", "9+","11+","13 +","15 +"];
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = function (myMap) {
           var div = L.DomUtil.create('div', 'info legend'),

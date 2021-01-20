@@ -3,12 +3,12 @@ let urlPop = "/api/population/countries";
 // Load in geojson data for marking Countries
 let geoDataURL = "static/data/countries.geojson";
 
-
   // Grab Countries geo data with d3 from countries geojson
   d3.json(geoDataURL).then(function(data) {
 
     // reading Api json to merge data with geojson
     d3.json(urlPop).then(function(dataPop){
+      console.log(dataPop)
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
       let key = "2020";
@@ -87,7 +87,8 @@ let geoDataURL = "static/data/countries.geojson";
       layers: [light]
     });
     // Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: false}).addTo(myMap);
 
 
 

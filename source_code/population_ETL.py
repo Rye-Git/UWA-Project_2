@@ -51,31 +51,6 @@ df_cityPop.fillna(0,inplace = True)
 
 
 
-
-# Latest Data
-#####################################################
-# url to scrape for the Live population data
-countries_url ="https://worldpopulationreview.com"
-# Use pandas `read_html` to parse the url
-df_LatestPop = pd.read_html(countries_url, header=0)[0]
-# eliminating unnessasary data
-df_LatestPop = df_LatestPop.iloc[:,[1,2,4,5,6,7,8]]
-# rename the columns
-df_LatestPop.rename(columns={'Area':'Area_SqKm',
-                             '2019 Density':'Density_PerSqKm',
-                             'Growth Rate':'Growth_Percentage', 
-                             'World %':'World_Percentage'
-                            },inplace=True)
-                            
-# Converting string values to numbers
-df_LatestPop['Area_SqKm'] = pd.to_numeric(df_LatestPop['Area_SqKm'].str.rsplit(' ', 0).str.get(0).str.replace(r',', ''))
-df_LatestPop['Density_PerSqKm'] = pd.to_numeric(df_LatestPop['Density_PerSqKm'].str.rsplit('/', 0).str.get(0).str.replace(r',', ''))
-df_LatestPop['Growth_Percentage'] = pd.to_numeric(df_LatestPop['Growth_Percentage'].str.rsplit('%', 0).str.get(0))
-df_LatestPop['World_Percentage'] = pd.to_numeric(df_LatestPop['World_Percentage'].str.rsplit('%', 0).str.get(0))
-#####################################################
-
-
-
 # Scraping Country codes to merge datasets with
 #####################################################
 # url to scrape for ISO 3166 country codes Alpha-2 and Alpha-3 from www.iban.com
@@ -210,7 +185,9 @@ def cleanData(df, col_list, subset):
     # renaming columns
     df.rename(columns= {"Country Name":"Country", "Country Code":"Country_Code"}, inplace = True)
     # merging with countries_df to keep the Countries List same
-    df = df_countries.merge(df, on=["Country_Code","Country"], how="inner")
+    df = df_countries.merge(df, on=["Country_Code"], how="inner")
+    df = df.drop(['Country_y'], axis=1)
+    df.rename(columns= {"Country_x":"Country"}, inplace = True)
     # removing countries with NaN value in 2017
     df = df.dropna(axis=0, subset=subset)
     # Replace null values with 0
@@ -267,7 +244,6 @@ if bool(db_name in client.list_database_names()):
 db = client[db_name]
 countriesPop = db["countriesPopulation"]
 citiesPop = db["citiesPopulation"]
-latestPop = db["latestPopulation"]
 worldPop = db["worldPopulation"]
 popDensity = db["populationDensity"]
 birRate = db["birthRate"]
@@ -286,7 +262,6 @@ def insertToDB(df, collection):
 # Calling function to insert each dataframes into mongoDB collections
 insertToDB(df_countries_merged, countriesPop)
 insertToDB(df_cityPop, citiesPop)
-insertToDB(df_LatestPop, latestPop)
 insertToDB(df_worldPop, worldPop)
 insertToDB(df_Density, popDensity)
 insertToDB(df_birth, birRate)

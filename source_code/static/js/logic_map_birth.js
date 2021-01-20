@@ -1,4 +1,4 @@
-let urlPop = "/api/population/countries";
+let urlPop = "/api/population/birth";
 // Load in geojson data for marking Countries
 let geoDataURL = "/static/data/countries.geojson";
 
@@ -10,7 +10,7 @@ let geoDataURL = "/static/data/countries.geojson";
       console.log(dataPop);
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
-      let key = "Density";
+      let key = "2018";
       data.features.forEach(val => {
         for( let i=0; i<popCountriesData.length; i++){
           if(val.id == popCountriesData[i]["Country_Code"]){
@@ -26,7 +26,7 @@ let geoDataURL = "/static/data/countries.geojson";
 
       // Creating map object
   var myMap = L.map("map", {
-    center: [34.0522, 20.2437],
+    center: [34.0522, 10.2437],
     zoom: 2
   });
 
@@ -42,14 +42,14 @@ let geoDataURL = "/static/data/countries.geojson";
     
 
     function getColor(d) {
-      return d > 20000 ? '#2505f5' :
-             d > 7000  ? '#1c0a91' :
-             d > 2000  ? '#42349e' :
-             d > 1000  ? '#6e5ed6' :
-             d > 500   ? '#685ea8' :
-             d > 100  ? '#8079ad' :
-             d > 0   ? '#aea7db' :
-                        '#dbd7f5';
+      return d > 45 ? '#07f50f' :
+             d > 41  ? '#03800d' :
+             d > 38  ? '#198522' :
+             d > 35  ? '#328a39' :
+             d > 25  ? '#82ba86' :
+             d > 15  ? '#b3e6b7' :
+             d > 5   ? '#c7f2ca' :
+                        '#dcf5de';
     }
     function style(feature) {
       return {
@@ -106,7 +106,7 @@ let geoDataURL = "/static/data/countries.geojson";
     geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
       info.addTo(myMap);
     
-      var  show = ["< 0","0+", "100+", "500+", "1000+","2000+","7000+","20000 +"];
+      var  show = ["< 5","5+", "15+", "25+", "35+","38+","41+","45 +"];
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = function (myMap) {
           var div = L.DomUtil.create('div', 'info legend'),
