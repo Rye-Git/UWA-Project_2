@@ -76,7 +76,7 @@ function init() {
 
         // Display first country's to console for checking
         // Countries are in ranked order of population
-        console.log(countryPopulations[0]);
+        // console.log(countryPopulations[0]);
 
         displayPieChart(countryPopulations);
         
