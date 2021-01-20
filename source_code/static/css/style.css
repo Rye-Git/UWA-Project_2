@@ -181,11 +181,18 @@ footer {
   .navbar {  
     padding: inherit;
   } 
+
+  .nav-link{
+    font-size:13px;
+  }
   
   .navbar div {  
     background-color: rgb(66, 66, 66);
   }
 
+  #logo {
+    font-size:35px;
+  }
   button{
     margin-right: 60px;
   }
