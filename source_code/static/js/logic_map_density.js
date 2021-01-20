@@ -24,6 +24,8 @@
           container._leaflet_id = null;
       }
   
+
+      
       // Creating map object
       var map = L.map("map_density", {
         center: [34.0522, 10.2437],
