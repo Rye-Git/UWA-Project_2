@@ -24,6 +24,16 @@ h5 {
   color: #f1e4d7;
 }
 
+td{
+  font-size: 15px;
+}
+
+th{
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(185, 134, 24);
+}
+
 hr {
   height:3px;
   border-width:0;

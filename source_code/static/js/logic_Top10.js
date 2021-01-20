@@ -53,7 +53,6 @@ function displayPieChart(populationData) {
   
     // Give pie chart a title
     var pieLayout = {
-        title: "Percentage of World Population - Top 10 Countries and ROW",
         plot_bgcolor: "rgba(0,0,0,0)",
         paper_bgcolor: "rgba(0,0,0,0)"
     };
