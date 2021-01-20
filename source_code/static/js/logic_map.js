@@ -3,12 +3,12 @@ let urlPop = "/api/population/countries";
 // Load in geojson data for marking Countries
 let geoDataURL = "static/data/countries.geojson";
 
-
   // Grab Countries geo data with d3 from countries geojson
   d3.json(geoDataURL).then(function(data) {
 
     // reading Api json to merge data with geojson
     d3.json(urlPop).then(function(dataPop){
+      console.log(dataPop)
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
       let key = "2020";
@@ -87,22 +87,17 @@ let geoDataURL = "static/data/countries.geojson";
       layers: [light]
     });
     // Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps).addTo(myMap);
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: false}).addTo(myMap);
 
 
 
     
 
     function getColor(d) {
-<<<<<<< HEAD
-      return d > 100000000 ? '#034E7B' :
-             d > 30000000  ? '#0570B0' :
-             d > 20000000  ? '#3690C0' :
-=======
       return d > 1000000000 ? '#034E7B' :
              d > 200000000  ? '#0570B0' :
              d > 100000000  ? '#3690C0' :
->>>>>>> cb732c921ae2da713bf9ea8654f3b9db419a4b03
              d > 10000000  ? '#74A9CF' :
              d > 1000000   ? '#A6BDDB' :
              d > 100000  ? '#D0D1E6' :
@@ -163,44 +158,26 @@ let geoDataURL = "static/data/countries.geojson";
     }
     geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
       info.addTo(myMap);
-<<<<<<< HEAD
-    cityLayer.addTo(myMap);
-      var legend = L.control({position: 'bottomright'});
-      legend.onAdd = function (myMap) {
-          var div = L.DomUtil.create('div', 'info legend'),
-              mhis = [0, 10000, 100000, 1000000, 1000000, 15000000, "300M", "1B"],
-=======
     
       var  show = ["< 10,000","10,000+", "100,000+", "1M+", "10M+","100M+","200M +","1B +"];
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = function (myMap) {
           var div = L.DomUtil.create('div', 'info legend'),
               mhis = [0, 10000, 100000, 1000000, 10000000, 100000000, 200000000, 1000000000],
->>>>>>> cb732c921ae2da713bf9ea8654f3b9db419a4b03
               labels = [],
               from, to;
           for (var i = 0; i < mhis.length; i++) {
               from = mhis[i];
-<<<<<<< HEAD
-              to = mhis[i + 1];
-              labels.push(
-                  '<i style="background:' + getColor(from + 1) + '"></i> ' +
-                  from + (to ? '&ndash;' + to : '+'));
-=======
 
               to = mhis[i + 1];
               labels.push(
                   '<i style="background:' + getColor(from + 1) + '"></i> ' +
                   show[i] ); // + (to ? '&ndash;' + to : '+')
->>>>>>> cb732c921ae2da713bf9ea8654f3b9db419a4b03
           }
           div.innerHTML = labels.join('<br>');
           return div;
       };
       legend.addTo(myMap);  
-<<<<<<< HEAD
-=======
       
->>>>>>> cb732c921ae2da713bf9ea8654f3b9db419a4b03
   });
 });
