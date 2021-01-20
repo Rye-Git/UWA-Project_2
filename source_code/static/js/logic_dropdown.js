@@ -11,7 +11,6 @@ d3.json(url).then(function(response){
     jSuites.dropdown(document.getElementById('dropdown'), {
         data: country_list,
         placeholder: "Country",
-        value: "Australia",
         autocomplete: true,
         lazyLoading: true,
         multiple: false,
