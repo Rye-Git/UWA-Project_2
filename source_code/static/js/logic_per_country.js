@@ -58,7 +58,7 @@ function displayLineGraph_Population(populationData, countryName) {
     let lineLayout = {
          title: countryName + " - Population Actual and Predicted 1970 to 2050",
          xaxis: { title: "Years" },
-         yaxis: { title: "Population (thousands (k) / millions (M) / billions (B))" }
+         yaxis: { title: "Population (thousands(k)/ millions(M)/ billions(B))" }
     };
     
     // Use plotly to display line graph at div ID "line2" with lineData and lineLayout
