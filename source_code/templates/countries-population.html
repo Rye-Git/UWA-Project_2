@@ -42,44 +42,30 @@
         <div class="row">
         <div class="col-sm-2">
         <h4 class='page-header'>Select a country</h4>
-        <div id="dropdown"></div>                
+        <div id="dropdown" onchange="optionChanged(this.value)"></div> 
+        <br><br>
+        </div>
+        </div>
+        </div>
+        </div>               
   <!-- End Data Analysis -->
 
   <!-- Final Plots -->
-  <div class="container-fluid bg-3 text-center">  
-    <div class="container">   
-    <div class="row">
-      <div class="col-sm-4">
-        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
-        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
-        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.05.png" width="400" height="500" alt="Image">
-        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
-        </div>  
-    </div>
-      <div class="col-sm-4"> 
-        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
-        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
-        <img src="../static/images/Screen Shot 2021-01-12 at 20.21.54.png"  width="400" height="500" alt="Image">
-        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
-        </div>  
-    </div>
-      <div class="col-sm-4"> 
-        <p style="color: #be9d7e; font-size: 25px;"><strong> Some text..</strong></p>
-        <div class="thumbnail" style="background-color:#d4c3b3; height: 500px;">
-        <img src="../static/images/Screen Shot 2021-01-12 at 20.22.39.png" width="400" height="500" alt="Image">
-        <p style="color: rgb(255, 255, 255); padding: 15px; font-size: 20px;"> asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc asvhsgc vgvs jhbjhbjh nhbjhbhj hbjhbjh hbhjb vnbvcd nvzzvxc</p>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div><br><br>
+ 
+  <div id="line1"></div>
+  <div id="line2"></div>
+  <div id="line3"></div>
+  <div id="line4"></div>
+  <br><br>
   <!-- End Final Plots -->
 <!-- D3 JavaScript -->
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <!-- Jsuits library for Dropdown -->
 <script src="https://jsuites.net/v3/jsuites.js"></script>
+<!-- Plotly JavaScript -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
 <!-- Our JavaScript -->
 <script type="text/javascript" src="../static/js/logic_dropdown.js"></script>
-<script src="../static/js/logic_plotly.js"></script>
+<script type="text/javascript" src="../static/js/logic_per_country.js"></script>
 </body>
 </html>
