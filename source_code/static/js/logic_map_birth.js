@@ -110,7 +110,7 @@ let geoDataURL = "/static/data/countries.geojson";
       var legend = L.control({position: 'bottomright'});
       legend.onAdd = function (myMap) {
           var div = L.DomUtil.create('div', 'info legend'),
-              mhis = [0, 10, 20, 30, 50, 90, 100, 130],
+              mhis = [0, 5, 15, 25, 35, 38, 41, 45],
               labels = [],
               from, to;
           for (var i = 0; i < mhis.length; i++) {
