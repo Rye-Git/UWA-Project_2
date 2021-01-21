@@ -10,10 +10,10 @@
          
   // Countries List
   var topCountries = content.append("div")
-                            .attr("class","topCountries");                            
+                            .attr("class","topCountriesOnly");                            
                                     
   var list_heading1 = topCountries.append("h3")
-                                 .text("Top 10 Countries in Population");
+                                 .text("Top 10 Countries in Population Growth Rate");
   var top_lists1 = topCountries.append("div")
                               .attr("class","list-type5")
                               .append("ol");
@@ -51,54 +51,15 @@ let geoDataURL = "static/data/countries.geojson";
         }
       })
 
-      // creating a list of Top 10 Countries in population
+      // creating a list of Top 10 Countries in population Growth Rate
+      popCountriesData.sort(function(a, b) {
+          return b.GrowthRate - a.GrowthRate;
+      }); // Sort by density (descending)
       for(let i=0; i<10; i++){
         top_lists1.append("li")
-                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + formatNumber(popCountriesData[i]["2020"]));
+                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + formatNumber(popCountriesData[i]["GrowthRate"]));
       }
-
-    });
-
-
-    // Top 10 Cities markers
-    d3.json(urlCity).then(function(cityData){  
-    // An array which will be used to store created cityMarkers
-    var cityMarkers = [];
-    var cityCircleMarkers = [];
-
-    // getting data from cities json API
-    var cities = cityData[0]["data"];
-    // Loop through top 10 cities and create city markers
-    for (let i = 0; i < 10; i++) {
-      let coordinates = [cities[i].Latitude, cities[i].Longitude];
-      let population = cities[i]["2020"];
-      // create a new marker, push it to the cityMarkers array
-      cityMarkers.push(
-        L.marker(coordinates).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")
-      );
-      cityCircleMarkers.push(
-        L.circle(coordinates, {
-          fillOpacity: 1,
-          color: "black",
-          fillColor: "black",
-          radius: population/50
-      }).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")); 
-
-
-    
-    }
-
-    // // Add all the cityMarkers to a new layer group.
-    // var cityLayer = L.layerGroup(cityMarkers);
-    // var cityCircleLayer = L.layerGroup(cityCircleMarkers);
-    // cityLayer.addLayer(cityCircleLayer);
-
-
-
-
-
-    
-
+      
     // Define variables for our tile layers
     var light = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
@@ -112,43 +73,36 @@ let geoDataURL = "static/data/countries.geojson";
     var baseMaps = {
       Light: light
     };
-    // Overlays that may be toggled on or off
-    // var overlayMaps = {
-    //   "Top Cities": cityLayer
-    // };
+
     // to clear container of map before initializing if already exists
-    var container = L.DomUtil.get('map');
+    var container = L.DomUtil.get('map_growth');
     if(container != null){
+        console.log(container);
         container._leaflet_id = null;
     }
+
       // Creating map object
-    var myMap = L.map("map_growth", {
+    var gMap = L.map("map_growth", {
       center: [34.0522, 10.2437],
       zoom: 2,
       layers: [light]
     });
-    // Add the layer control to the map
-    // L.control.layers(null, overlayMaps, {
-    //   collapsed: false
-    // }).addTo(myMap);
 
 
-
-    
 
     function getColor(d) {
-      return d > 1.5 ? '#034E7B' :
-             d > 1.2  ? '#0570B0' :
-             d > 1.1  ? '#3690C0' :
-             d > 1  ? '#74A9CF' :
-             d > 0.8   ? '#A6BDDB' :
-             d > 0.5  ? '#D0D1E6' :
-             d > 0.2   ? '#ECE7F2' :
-                        '#FFF7FB';
+      return d > 1020 ? '#014636' :
+             d > 1010  ? '#016260' :
+             d > 1005  ? '#02818a' :
+             d > 1000  ? '#41b6c4' :
+             d > 999   ? '#7fcdbb' :
+             d > 995  ? '#a8ddb5' :
+             d > 990   ? '#ccece6' :
+                        '#e5f5f9';
     }
     function style(feature) {
       return {
-          fillColor: getColor(feature.properties["GrowthRate"]),
+          fillColor: getColor(feature.properties["GrowthRate"] * 1000),
           weight: 2,
           opacity: 1,
           color: 'white',
@@ -165,8 +119,8 @@ let geoDataURL = "static/data/countries.geojson";
     };
     info.update = function (props) {
       this._div.innerHTML = '<h4>2019 Population Growth Rate</h4>' +  (props ?
-              '<b> Country: ' + props.name + '<br>Population: ' + formatNumber(props["2020"]) + '</b><br>Density: ' + props.Density + 
-              '<br>Growth rate: ' + props.GrowthRate + '<br>Rank: ' + props.rank + '<br>'
+              '<b> Country: ' + props.name + '<br>Growth rate: ' + props.GrowthRate + '</b><br>Population: ' + formatNumber(props["2020"]) + 
+              '<br>Density: ' + props.Density + '<br>Total Population Rank: ' + props.rank + '<br>'
               : 'Hover over a Country');
     };
     function highlightFeature(e) {
@@ -183,10 +137,10 @@ let geoDataURL = "static/data/countries.geojson";
           info.update(layer.feature.properties);
     }
 
-    var geojson;
+    var geojsonGrowth;
 
     function resetHighlight(e) {
-          geojson.resetStyle(e.target);
+          geojsonGrowth.resetStyle(e.target);
           info.update();
     }
     function zoomToFeature(e) {
@@ -194,19 +148,19 @@ let geoDataURL = "static/data/countries.geojson";
     }
     function onEachFeature(feature, layer) {
           layer.on({
-        mouseover: highlightFeature,
-        mouseout: resetHighlight,
+              mouseover: highlightFeature,
+              mouseout: resetHighlight,
               click: zoomToFeature
           });
     }
-    geojson = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(myMap);
-    info.addTo(myMap);
+    geojsonGrowth = L.geoJson(data, {style: style, onEachFeature: onEachFeature}).addTo(gMap);
+    info.addTo(gMap);
 
-      var  show = ["< 10,000","10,000 +", "100,000 +", "1M +", "10M +","100M +","200M +","1B +"];
+      var  show = ["< 0.98","0.99 +", "0.995 +", "0.999 +", "1 +","1.005 +","1.01 +","1.02 +"];
       var legend = L.control({position: 'bottomright'});
-      legend.onAdd = function (myMap) {
+      legend.onAdd = function (gMap) {
           var div = L.DomUtil.create('div', 'info legend'),
-              popul = [0, 0.2, 0.5, 0.8, 1, 1.1, 1.2, 1.5],
+              popul = [0, 990, 995, 999, 1000, 1005, 1010, 1020],
               labels = [],
               from, to;
           for (var i = 0; i < popul.length; i++) {
@@ -215,12 +169,12 @@ let geoDataURL = "static/data/countries.geojson";
               to = popul[i + 1];
               labels.push(
                   '<i style="background:' + getColor(from + 1) + '"></i> ' +
-                  show[i] ); // + (to ? '&ndash;' + to : '+')
+                  show[i] ); 
           }
           div.innerHTML = labels.join('<br>');
           return div;
       };
-      legend.addTo(myMap);  
+      legend.addTo(gMap);  
       
   });
 

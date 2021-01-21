@@ -272,6 +272,22 @@ footer {
 
 .topCountries h3 {
   font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.topCountriesOnly {
+  text-align: center;
+  padding-left: 20%;
+  max-width: 800px;
+}
+
+.topCountriesOnly h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.topCountriesOnly .list-type5 ol li{
+  padding-right: 10%;
 }
 
 /* Top 10 Cities List */

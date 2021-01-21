@@ -85,13 +85,13 @@ let geoDataURL = "static/data/countries.geojson";
       cityMarkers.push(
         L.marker(coordinates).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")
       );
-      cityCircleMarkers.push(
-        L.circle(coordinates, {
-          fillOpacity: 1,
-          color: "black",
-          fillColor: "black",
-          radius: population/50
-      }).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")); 
+      // cityCircleMarkers.push(
+      //   L.circle(coordinates, {
+      //     fillOpacity: 1,
+      //     color: "black",
+      //     fillColor: "black",
+      //     radius: population/50
+      // }).bindPopup("<h3>" + cities[i].City + "</h3> <hr> <h4>Population: " + formatNumber(population) + "</h4>")); 
 
 
       // creating a list of Top 10 Cities in population
@@ -102,8 +102,8 @@ let geoDataURL = "static/data/countries.geojson";
 
     // Add all the cityMarkers to a new layer group.
     var cityLayer = L.layerGroup(cityMarkers);
-    var cityCircleLayer = L.layerGroup(cityCircleMarkers);
-    cityLayer.addLayer(cityCircleLayer);
+    // var cityCircleLayer = L.layerGroup(cityCircleMarkers);
+    // cityLayer.addLayer(cityCircleLayer);
 
 
 
@@ -128,12 +128,8 @@ let geoDataURL = "static/data/countries.geojson";
     var overlayMaps = {
       "Top Cities": cityLayer
     };
-    // to clear container of map before initializing if already exists
-    var container = L.DomUtil.get('map');
-    if(container != null){
-        container._leaflet_id = null;
-    }
-      // Creating map object
+
+    // Creating map object
     var myMap = L.map("map", {
       center: [34.0522, 10.2437],
       zoom: 2,
