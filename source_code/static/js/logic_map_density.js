@@ -1,3 +1,8 @@
+
+var format_Number = function(num) { 
+  return parseFloat((num).toFixed(3)).toLocaleString(); 
+};
+
 // inside tab
 !(function (d3) {
 
@@ -53,11 +58,11 @@ let geoDataURL = "static/data/countries.geojson";
 
       // creating a list of Top 10 Countries in population Growth Rate
       popCountriesData.sort(function(a, b) {
-          return b.GrowthRate - a.GrowthRate;
+          return b.Density - a.Density;
       }); // Sort by density (descending)
       for(let i=0; i<10; i++){
         top_lists1.append("li")
-                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + formatNumber(popCountriesData[i]["Density"]));
+                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + format_Number(popCountriesData[i]["Density"]));
       }
       
     // Define variables for our tile layers

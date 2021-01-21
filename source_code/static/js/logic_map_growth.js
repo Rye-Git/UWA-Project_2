@@ -57,7 +57,7 @@ let geoDataURL = "static/data/countries.geojson";
       }); // Sort by density (descending)
       for(let i=0; i<10; i++){
         top_lists1.append("li")
-                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + formatNumber(popCountriesData[i]["GrowthRate"]));
+                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + format_Number(popCountriesData[i]["GrowthRate"]));
       }
       
     // Define variables for our tile layers
