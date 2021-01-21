@@ -75,13 +75,21 @@ function displayLineGraph_BirthRates(birthRatesData, countryName) {
 
     // Display birth rate data to console for checking
     // Should be array of length 1
-    console.log(countryBirthRate);
-
-    // Extract years (keys) and birth rates (values) from data 
-    birthRatesYears = Object.keys(countryBirthRate[0]);
-    birthRatesAmounts = Object.values(countryBirthRate[0]);
-
-    // Select the first 10 years of data for the birth rates
+    // If array is of length 0, no data recorded for this country
+    // Set lists to be empty
+    // Results in empty plot
+    if (countryBirthRate.length == 0) {
+        birthRatesYears = [];
+        birthRatesAmounts = [];
+    }
+    else {
+        console.log(countryBirthRate);
+        // Extract years (keys) and birth rates (values) from data 
+        birthRatesYears = Object.keys(countryBirthRate[0]);
+        birthRatesAmounts = Object.values(countryBirthRate[0]);
+    }
+    
+    // Select the first 10 elements of data for the birth rates
     // Convert year string to number
     // Plot with both lines and markers for each data point
     let lineData_birthRates = {
@@ -117,13 +125,21 @@ function displayLineGraph_DeathRates(deathRatesData, countryName) {
 
     // Display death rate data to console for checking
     // Should be array of length 1
-    console.log(countryDeathRate);
+    // If array is of length 0, no data recorded for this country
+    // Set lists to be empty
+    // Results in empty plot
+    if (countryDeathRate.length == 0) {
+        deathRatesYears = [];
+        deathRatesAmounts = [];
+    }
+    else {
+        console.log(countryDeathRate);
+        // Extract years (keys) and death rates (values) from data 
+        deathRatesYears = Object.keys(countryDeathRate[0]);
+        deathRatesAmounts = Object.values(countryDeathRate[0]);
+    }
 
-    // Extract years (keys) and death rates (values) from data 
-    deathRatesYears = Object.keys(countryDeathRate[0]);
-    deathRatesAmounts = Object.values(countryDeathRate[0]);
-
-    // Select the first 10 years of data for the death rates
+    // Select the first 10 elements of data for the death rates
     // Convert year string to number
     // Plot with both lines and markers for each data point
     let lineData_deathRates = {
@@ -159,13 +175,21 @@ function displayLineGraph_SexRatios(sexRatiosData, countryName) {
 
     // Display sex ratio data to console for checking
     // Should be array of length 1
-    console.log(countrySexRatio);
-
-    // Extract years (keys) and sex ratios (values) from data 
-    sexRatiosYears = Object.keys(countrySexRatio[0]);
-    sexRatiosAmounts = Object.values(countrySexRatio[0]);
-
-    // Select the first 10 years of data for the sex ratios
+    // If array is of length 0, no data recorded for this country
+    // Set lists to be empty
+    // Results in empty plot
+    if (countrySexRatio.length == 0) {
+        sexRatiosYears = [];
+        sexRatiosAmounts = [];
+    }
+    else {
+        console.log(countrySexRatio);
+        // Extract years (keys) and sex ratios (values) from data 
+        sexRatiosYears = Object.keys(countrySexRatio[0]);
+        sexRatiosAmounts = Object.values(countrySexRatio[0]);
+    }
+    
+    // Select the first 10 elements of data for the sex ratios
     // Convert year string to number
     // Plot with both lines and markers for each data point
     let lineData_sexRatios = {
