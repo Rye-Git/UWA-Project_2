@@ -226,7 +226,6 @@ function optionChanged() {
     // Assign dropdown menu to variable using D3 and ID for menu given in HTML
     let dropdownMenu = d3.select("#dropdown");
 
- 
     // Assign the value of the country dropdown menu option to a variable
     let country = dropdownMenu.property("value");
     
@@ -235,7 +234,6 @@ function optionChanged() {
 
     // Display the selected country in the countries page H3
     d3.select("#country").insert("h3").text(country);
-
 
     // Select the ID of the dropdown country menu
     console.log("Dropdown country value: ");
