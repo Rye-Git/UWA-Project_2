@@ -232,11 +232,10 @@ function optionChanged() {
     // Clear the already displayed country
     d3.select("#country").html("");
 
-    // Display the selected country in the countries page H3
+    // Display the selected country in the countries page using header tag h3
     d3.select("#country").insert("h3").text(country);
 
-    // Select the ID of the dropdown country menu
-    console.log("Dropdown country value: ");
+    // Display the country selected from the dropdown menu to console
     console.log(dropdownMenu.property("value"));
 
     // Display the graphs for the desired country
