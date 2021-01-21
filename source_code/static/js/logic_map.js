@@ -126,7 +126,7 @@ let geoDataURL = "static/data/countries.geojson";
     };
     // Overlays that may be toggled on or off
     var overlayMaps = {
-      "Top Cities": cityLayer
+      "Top 10 Cities": cityLayer
     };
 
     // Creating map object
