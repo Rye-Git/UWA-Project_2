@@ -89,6 +89,9 @@ Although the number presented in our project seems very precise, it is important
 * Cities population in 2019 & 2020. 
 ![cities_table](images/city table.png)
 
+* API data. 
+![api](images/api.png)
+
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - UWA Data Science
 - Data source (scraped): https://worldpopulationreview.com
