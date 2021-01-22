@@ -63,34 +63,35 @@ Although the number presented in our project seems very precise, it is important
 
 ## ✍️ Visualizations <a name = "visualizations"></a>
 
+* World map with 2020 country population details. 
 ![Global_Map](images/global_map.PNG)
 
 * Top 10 Countries & Top 10 cities in 2020. 
-![top_10](images/top_10.png)
+![top_10](images/top_10.PNG)
 
 * Top 10 Countries vs World Population ratio in 2020. 
-![population_ratio](images/population_ratio.png)
+![population_ratio](images/population_ratio.PNG)
 
 * Australia population actual & prediction. 
-![au_population](images/australia_population.png)
+![au_population](images/australia_population.PNG)
 
 * Australia sex ratio. 
-![au_sex_ration](images/australia_sex_ratio.png)
+![au_sex_ration](images/australia_sex_ratio.PNG)
 
 * Australia birth rate. 
-![au_birthrate](images/australia_birthrate.png)
+![au_birthrate](images/australia_birthrate.PNG)
 
 * Australia death rate. 
-![au_deathrate](images/australia_deathrate.png)
+![au_deathrate](images/australia_deathrate.PNG)
 
 * Countries population actual &prediction. 
-![country_table](images/country_table.png)
+![country_table](images/country_table.PNG)
 
 * Cities population in 2019 & 2020. 
-![cities_table](images/city_table.png)
+![cities_table](images/city_table.PNG)
 
 * API data. 
-![api](images/api.png)
+![api](images/api.PNG)
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - UWA Data Science
