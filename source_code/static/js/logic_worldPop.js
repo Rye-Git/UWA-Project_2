@@ -1,5 +1,7 @@
 function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    if (num != undefined){
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
   }
   
   
