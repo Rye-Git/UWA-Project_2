@@ -92,7 +92,11 @@ def contact():
 @app.route('/Data')
 def Data():
     return render_template('Data.html')  
-    
+
+@app.route('/data-cities')
+def dataCities():
+    return render_template('data-cities.html') 
+
 @app.route('/api')
 def api():
     return render_template('api.html') 
