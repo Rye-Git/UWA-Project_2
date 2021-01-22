@@ -62,8 +62,8 @@ Although the number presented in our project seems very precise, it is important
 
 
 ## ✍️ Visualizations <a name = "visualizations"></a>
-* Global Map showing the population per country. 
-![Global_Map](images/global_m.png)
+
+![Global_Map](images/global_map.png)
 
 * Top 10 Countries & Top 10 cities in 2020. 
 ![top_10](images/top_10.png)
