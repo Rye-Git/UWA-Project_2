@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="images/world_population.PNG" alt="Project logo"></a>
+ <img width=500px height=400px src="images/world_population.PNG" alt="Project logo"></a>
 </p>
 
 <h3 align="center">World Population Analysis</h3>
