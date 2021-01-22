@@ -33,7 +33,7 @@
 
 ## 🧐 About <a name = "about"></a>
 **Description:**
-Analysis of the World Population per country and city.
+Analysis of the World Population per country and city.<br>
 Data clean-up:
 1.	Merging data from various datasets
 2.	Check for duplication
