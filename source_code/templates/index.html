@@ -156,17 +156,12 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <!-- Our JavaScript -->
 <script src="../static/js/logic_worldPop.js"></script>
-<script src="../static/js/logic_map.js"></script>
-<script src="../static/js/logic_map_density.js"></script>
-<script src="../static/js/logic_map_growth.js"></script>
-<script type="text/javascript" src="../static/js/logic_Top10.js"></script>
-
 <script>
-  $.ajaxSetup ({
-      // Disable caching of AJAX responses
-      // Used when debugging
-      cache: false
-  });
+  // $.ajaxSetup ({
+  //     // Disable caching of AJAX responses
+  //     // Used when debugging
+  //     cache: false
+  // });
 
   $.getScript("../static/js/logic_map.js");
   $(".atab").click(function() {
@@ -180,5 +175,6 @@
       $.getScript("../static/js/logic_map_growth.js");
   })
 </script> 
+<script type="text/javascript" src="../static/js/logic_Top10.js"></script>
 </body>
 </html>
