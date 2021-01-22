@@ -129,6 +129,13 @@ let geoDataURL = "static/data/countries.geojson";
       "Top 10 Cities": cityLayer
     };
 
+    // to clear container of map before initializing if already exists
+    var container = L.DomUtil.get('map');
+    if(container != null){
+        console.log(container);
+        container._leaflet_id = null;
+    }  
+
     // Creating map object
     var myMap = L.map("map", {
       center: [34.0522, 10.2437],
@@ -174,7 +181,7 @@ let geoDataURL = "static/data/countries.geojson";
     info.update = function (props) {
       this._div.innerHTML = '<h4>2020 Population</h4>' +  (props ?
               '<b> Country: ' + props.name + '<br>Population: ' + formatNumber(props["2020"]) + '</b><br>Density: ' + props.Density + 
-              '<br>Growth rate: ' + props.GrowthRate + '<br>Rank: ' + props.rank + '<br>'
+              ' /km²<br>Growth rate: ' + props.GrowthRate + '% <br>Rank: ' + props.rank + '<br>'
               : 'Hover over a Country');
     };
     function highlightFeature(e) {

@@ -57,7 +57,7 @@ let geoDataURL = "static/data/countries.geojson";
       }); // Sort by density (descending)
       for(let i=0; i<10; i++){
         top_lists1.append("li")
-                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + format_Number(popCountriesData[i]["GrowthRate"]));
+                  .html("<span class='cname'>" + popCountriesData[i]["Country"] + " :</span> " + format_Number(popCountriesData[i]["GrowthRate"]) + "%");
       }
       
     // Define variables for our tile layers
@@ -119,8 +119,8 @@ let geoDataURL = "static/data/countries.geojson";
     };
     info.update = function (props) {
       this._div.innerHTML = '<h4>2019 Population Growth Rate</h4>' +  (props ?
-              '<b> Country: ' + props.name + '<br>Growth rate: ' + props.GrowthRate + '</b><br>Population: ' + formatNumber(props["2020"]) + 
-              '<br>Density: ' + props.Density + '<br>Total Population Rank: ' + props.rank + '<br>'
+              '<b> Country: ' + props.name + '<br>Growth rate: ' + props.GrowthRate + '%</b><br>Population: ' + formatNumber(props["2020"]) + 
+              '<br>Density: ' + props.Density + ' /km²<br>Total Population Rank: ' + props.rank + '<br>'
               : 'Hover over a Country');
     };
     function highlightFeature(e) {
