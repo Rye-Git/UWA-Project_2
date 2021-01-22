@@ -63,7 +63,7 @@ Although the number presented in our project seems very precise, it is important
 
 ## ✍️ Visualizations <a name = "visualizations"></a>
 
-![Global_Map](images/global_map.png)
+![Global_Map](images/global_map.PNG)
 
 * Top 10 Countries & Top 10 cities in 2020. 
 ![top_10](images/top_10.png)
