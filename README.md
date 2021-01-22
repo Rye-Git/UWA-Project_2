@@ -3,7 +3,7 @@
  <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
 </p>
 
-<h3 align="center">World population visualization</h3>
+<h3 align="center">World Population Analysis</h3>
 
 <div align="center">
 
@@ -11,7 +11,7 @@
 
 ---
 
-<p align="center">  A visuzalization of the world's population per country and city 
+<p align="center">  An analysis of the world's population per country and city 
     <br> 
 </p>
 
@@ -20,7 +20,9 @@
 - [Team](#Team)
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Acknowledgments](#acknowledgement)
+- [Visualizations](#visualizations)
+- [Acknowledgements](#acknowledgement)
+
 
 ## 🧐 Team <a name = "Team"></a>
 •	Rye Capati
@@ -31,9 +33,9 @@
 
 ## 🧐 About <a name = "about"></a>
 **Description:**
-Visualizion of the World Population per country and city.
+Analysis of the World Population per country and city.
 Data clean-up:
-1.	Merging data from 2019 to 2020
+1.	Merging data from various datasets
 2.	Check for duplication
 3.	Check for invalid value
 4.	Make sure the data frame is consistent for all the data set.
@@ -41,7 +43,12 @@ Data clean-up:
 
 
 **Summary**
-The top 10 countries and top 10 cities in terms of population <br>
+The current US Census Bureau world population estimate in June 2019 shows that the current global population is 7,577,130,400 people on earth, which far exceeds the world population of 7.2 billion from 2015. Our dataset estimate which is based on UN data shows the world's population surpassing 7.7 billion.
+
+Many other nations have populations of at least one million, while there are also countries that have just thousands. The smallest population in the world can be found in Vatican City, where only 801 people reside.
+
+Although the number presented in our project seems very precise, it is important to remember that it is just an estimate. It simply isn't possible to be sure exactly how many people there are on Earth at any one time.
+<br>
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
@@ -51,8 +58,40 @@ The top 10 countries and top 10 cities in terms of population <br>
 2.	What is the percentage of the top 10 countries compared to the rest of the world?
 3.	What are the top 10 cities with the largest population?
 4.  Is the largest populated city located in the largest populated country in the world?
-5.	Predicted population from 2020 to 2050?
+5.	Predicted population from 2020 to 2050 (eg. Australia)?
+
+
+## ✍️ Visualizations <a name = "visualizations"></a>
+* Global Map showing the population per country. 
+![Global_Map](images/Global Map.png)
+
+* Top 10 Countries & Top 10 cities in 2020. 
+![top_10](images/top 10.png)
+
+* Top 10 Countries vs World Population ratio in 2020. 
+![population_ratio](images/population ratio.png)
+
+* Australia population actual & prediction. 
+![au_population](images/australia population.png)
+
+* Australia sex ratio. 
+![au_sex_ration](images/australia sex ratio.png)
+
+* Australia birth rate. 
+![au_birthrate](images/australia birthrate.png)
+
+* Australia death rate. 
+![au_deathrate](images/australia deathrate.png)
+
+* Countries population actual & prediction. 
+![country_table](images/country table.png)
+
+* Cities population in 2019 & 2020. 
+![cities_table](images/city table.png)
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - UWA Data Science
-- Data source: https://worldpopulationreview.com/
+- Data source (scraped): https://worldpopulationreview.com
+- Data source (scraped): https://www.iban.com/country-codes
+- Data source (csv): https://datacatalog.worldbank.org
+- Data source (geojson download): https://github.com/johan/world.geo.json/blob/master/countries.geo.json
