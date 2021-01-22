@@ -19,12 +19,17 @@ function displayLineGraph_Population(populationData, countryName) {
 
     // Display population data to console for checking
     // Should be array of length 1
-    console.log(countryPopulation);
+    // console.log(countryPopulation);
 
     // Extract years (keys) and populations (values) from data 
     populationYears = Object.keys(countryPopulation[0]);
     populationAmounts = Object.values(countryPopulation[0]);
-
+    // Converting 0 values to null
+    if(populationAmounts.indexOf(0) !== -1) {
+        for (let j=0; j < populationAmounts.length; j++) {
+            populationAmounts.splice(populationAmounts.indexOf(0), 1, null);
+        }
+    }
     // Select the first 10 years of data for the actual population graph
     // Convert year string to number
     // Plot with both lines and markers for each data point
@@ -83,10 +88,18 @@ function displayLineGraph_BirthRates(birthRatesData, countryName) {
         birthRatesAmounts = [];
     }
     else {
-        console.log(countryBirthRate);
+        // console.log(countryBirthRate);
         // Extract years (keys) and birth rates (values) from data 
         birthRatesYears = Object.keys(countryBirthRate[0]);
         birthRatesAmounts = Object.values(countryBirthRate[0]);
+        // Converting 0 values to null
+        if(birthRatesAmounts.indexOf(0) !== -1) {
+            for (let j=0; j < birthRatesAmounts.length; j++) {
+                birthRatesAmounts.splice(birthRatesAmounts.indexOf(0), 1, null);
+            }
+        }
+        // console.log(birthRatesAmounts);
+
     }
     
     // Select the first 10 elements of data for the birth rates
@@ -133,10 +146,16 @@ function displayLineGraph_DeathRates(deathRatesData, countryName) {
         deathRatesAmounts = [];
     }
     else {
-        console.log(countryDeathRate);
+        // console.log(countryDeathRate);
         // Extract years (keys) and death rates (values) from data 
         deathRatesYears = Object.keys(countryDeathRate[0]);
         deathRatesAmounts = Object.values(countryDeathRate[0]);
+        // Converting 0 values to null
+        if(deathRatesAmounts.indexOf(0) !== -1) {
+            for (let j=0; j < deathRatesAmounts.length; j++) {
+                deathRatesAmounts.splice(deathRatesAmounts.indexOf(0), 1, null);
+            }
+        }
     }
 
     // Select the first 10 elements of data for the death rates
@@ -183,10 +202,16 @@ function displayLineGraph_SexRatios(sexRatiosData, countryName) {
         sexRatiosAmounts = [];
     }
     else {
-        console.log(countrySexRatio);
+        // console.log(countrySexRatio);
         // Extract years (keys) and sex ratios (values) from data 
         sexRatiosYears = Object.keys(countrySexRatio[0]);
         sexRatiosAmounts = Object.values(countrySexRatio[0]);
+        // Converting 0 values to null
+        if(sexRatiosAmounts.indexOf(0) !== -1) {
+            for (let j=0; j < sexRatiosAmounts.length; j++) {
+                sexRatiosAmounts.splice(sexRatiosAmounts.indexOf(0), 1, null);
+            }
+        }
     }
     
     // Select the first 10 elements of data for the sex ratios
@@ -236,7 +261,7 @@ function optionChanged() {
     d3.select("#country").insert("h3").text(country);
 
     // Display the country selected from the dropdown menu to console
-    console.log(dropdownMenu.property("value"));
+    // console.log(dropdownMenu.property("value"));
 
     // Display the graphs for the desired country
     displayLineGraph_Population(countryPopulations, country);
@@ -260,7 +285,7 @@ function init() {
 
         // Display first country's to console for checking
         // Countries are in ranked order of population
-        console.log(countryPopulations[0]);
+        // console.log(countryPopulations[0]);
 
         // Display line graph of actual and predicted population for Australia
         displayLineGraph_Population(countryPopulations, "Australia");
@@ -278,7 +303,7 @@ function init() {
 
         // Display first country's birth rates to console for checking
         // Countries are in ranked order of population
-        console.log(countryBirthRates[0]);
+        // console.log(countryBirthRates[0]);
 
         // Display line graph of birth rates for Australia
         displayLineGraph_BirthRates(countryBirthRates, "Australia");
@@ -296,7 +321,7 @@ function init() {
     
         // Display first country's death rates to console for checking
         // Countries are in ranked order of population
-        console.log(countryDeathRates[0]);
+        // console.log(countryDeathRates[0]);
     
         // Display line graph of death rates for Australia
         displayLineGraph_DeathRates(countryDeathRates, "Australia");
@@ -314,7 +339,7 @@ function init() {
     
         // Display first country's sex ratios to console for checking
         // Countries are in ranked order of population
-        console.log(countrySexRatios[0]);
+        // console.log(countrySexRatios[0]);
     
         // Display line graph of sex ratios for Australia
         displayLineGraph_SexRatios(countrySexRatios, "Australia");
