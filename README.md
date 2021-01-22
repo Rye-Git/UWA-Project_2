@@ -42,7 +42,7 @@ Data clean-up:
 5.	Make sure no rows accidentally deleted
 
 
-**Summary**
+**Summary:**
 The current US Census Bureau world population estimate in June 2019 shows that the current global population is 7,577,130,400 people on earth, which far exceeds the world population of 7.2 billion from 2015. Our dataset estimate which is based on UN data shows the world's population surpassing 7.7 billion.
 
 Many other nations have populations of at least one million, while there are also countries that have just thousands. The smallest population in the world can be found in Vatican City, where only 801 people reside.
