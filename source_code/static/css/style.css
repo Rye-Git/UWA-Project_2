@@ -435,12 +435,17 @@ footer {
     .navbar-brand {
       padding: 10px 5px 10px 5px;
     }
+    
+  }
 
+  @media (max-width: 1500px) {
     #line1, #line2, #line3, #line4{
       width: 600px;
     }
     
   }
+
+
 
   @media (max-width: 1200px) {
     #line1, #line2, #line3, #line4{
