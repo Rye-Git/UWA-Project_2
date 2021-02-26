@@ -46,6 +46,7 @@ let geoDataURL = "static/data/countries.geojson";
     d3.json(urlPop).then(function(dataPop){
       // Adding Population data into the geojson data
       let popCountriesData = dataPop[0]["data"];
+      console.log(dataPop[0]);
       data.features.forEach(val => {
         for( let i=0; i<popCountriesData.length; i++){
           if(val.id == popCountriesData[i]["Country_Code"]){
